@@ -11,3 +11,4 @@ Developers Developers Developers!!!
 ======
 Jose Antonio Santano González
 Abdón Rodríguez Pérez
+Óscar Rodríguez Bouza
