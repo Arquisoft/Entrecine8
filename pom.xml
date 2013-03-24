@@ -253,6 +253,19 @@
 			<timezone>2</timezone>
 			<properties />
 		</developer>
+		<developer>
+			<id>uo2017</id>
+			<name>Abdón Rodríguez Pérez</name>
+			<email>luo2017@uniovi.es</email>
+			<organization>WESO-University of Oviedo</organization>
+			<organizationUrl>http://www.uniovi.es</organizationUrl>
+			<roles>
+				<role>Developer</role>
+				<role>Student</role>
+			</roles>
+			<timezone>2</timezone>
+			<properties />
+		</developer>
 	</developers>
 
 
