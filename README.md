@@ -5,10 +5,7 @@ Simple blank project for the Software Architecture course
 
 Author
 ======
-Jose Emilio Labra Gayo
-
-Developers Developers Developers Developers!!!!
-======
-Jose Antonio Santano Gonz·lez
-AbdÛn RodrÌguez PÈrez
-”scar RodrÌguez Bouza
+Jose Emilio Labra Gayo<br> 
+Jose Antonio Santano Gonz√°lez<br>
+Abd√≥n Rodr√≠guez P√©rez<br>
+√ìscar Rodr√≠guez Bouza<br>
