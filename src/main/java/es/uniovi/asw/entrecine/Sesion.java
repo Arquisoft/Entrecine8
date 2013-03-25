@@ -1,15 +1,18 @@
 package es.uniovi.asw.entrecine;
 
+import java.util.Date;
+
 public class Sesion {
 
 	private TipoSesion tipo;
 	private boolean[][] butacas;
-	
+	private Date fecha;
 
-	public Sesion(TipoSesion tipo,int filas,int columnas) {
+	public Sesion(TipoSesion tipo, int filas, int columnas, Date date) {
 		super();
 		this.tipo = tipo;
-		
+		butacas = new boolean[filas][columnas];
+		this.fecha = date;
 	}
 
 	public boolean reservar(int fila, int columna) {
@@ -22,6 +25,10 @@ public class Sesion {
 
 	public double getPrecio() {
 		return tipo.getPrecio();
+	}
+	
+	public Date getFecha(){
+		return fecha;
 	}
 
 }
