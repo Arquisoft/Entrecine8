@@ -2,28 +2,24 @@ package es.uniovi.asw.entrecine;
 
 import java.util.Date;
 
+import es.uniovi.asw.entrecine.persistencia.AccesoABases;
+
 public class Sesion {
 
 	private TipoSesion tipo;
-	private boolean[][] butacas;
 	private Date fecha;
 	private String tituloPelicula;
+	private Integer id;
 
-	public Sesion(TipoSesion tipo, int filas, int columnas, Date date,
-			String tituloPelicula) {
-		super();
+	public Sesion(Integer id, TipoSesion tipo, Date date, String tituloPelicula) {
 		this.tipo = tipo;
-		butacas = new boolean[filas][columnas];
 		this.fecha = date;
 		this.tituloPelicula = tituloPelicula;
+		this.id=id;
 	}
 
 	public boolean reservar(int fila, int columna) {
-		if (butacas[fila][columna])
-			return false;
-		else
-			butacas[fila][columna] = true;
-		return true;
+		return AccesoABases.reservar(id, fila, columna);
 	}
 
 	public double getPrecio() {
