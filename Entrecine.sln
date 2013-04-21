@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntrecineWebApp", "EntrecineWebApp\EntrecineWebApp.csproj", "{47B92E4E-65E9-4F11-A335-51B56FAD9590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntrecineWebApp.Tests", "EntrecineWebApp.Tests\EntrecineWebApp.Tests.csproj", "{C473A966-F473-44F4-8078-8B9FB0A581E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47B92E4E-65E9-4F11-A335-51B56FAD9590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B92E4E-65E9-4F11-A335-51B56FAD9590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B92E4E-65E9-4F11-A335-51B56FAD9590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B92E4E-65E9-4F11-A335-51B56FAD9590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C473A966-F473-44F4-8078-8B9FB0A581E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C473A966-F473-44F4-8078-8B9FB0A581E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C473A966-F473-44F4-8078-8B9FB0A581E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C473A966-F473-44F4-8078-8B9FB0A581E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
