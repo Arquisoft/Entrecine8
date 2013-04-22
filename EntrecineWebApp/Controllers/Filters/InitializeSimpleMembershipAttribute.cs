@@ -1,12 +1,13 @@
-﻿using System;
+﻿using EntrecineWebApp.Models;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
-using EntrecineWebApp.Models;
 
 namespace EntrecineWebApp.Filters {
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute {
         private static SimpleMembershipInitializer _initializer;
@@ -19,6 +20,7 @@ namespace EntrecineWebApp.Filters {
         }
 
         private class SimpleMembershipInitializer {
+
             public SimpleMembershipInitializer() {
                 Database.SetInitializer<UsersContext>(null);
 

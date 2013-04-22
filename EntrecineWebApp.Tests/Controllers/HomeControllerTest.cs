@@ -1,15 +1,17 @@
-﻿using System;
+﻿using EntrecineWebApp;
+using EntrecineWebApp.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EntrecineWebApp;
-using EntrecineWebApp.Controllers;
 
 namespace EntrecineWebApp.Tests.Controllers {
+
     [TestClass]
     public class HomeControllerTest {
+
         [TestMethod]
         public void Index() {
             // Arrange

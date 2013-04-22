@@ -11,12 +11,10 @@
 
 <p>Ha iniciado sesión como <strong>@User.Identity.Name</strong>.</p>
 
-@if (ViewBag.HasLocalPassword)
-{
+@if (ViewBag.HasLocalPassword) {
     @Html.Partial("_ChangePasswordPartial")
 }
-else
-{ 
+else {
     @Html.Partial("_SetPasswordPartial")
 }
 

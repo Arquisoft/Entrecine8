@@ -1,17 +1,17 @@
-﻿using System;
+﻿using DotNetOpenAuth.AspNet;
+using EntrecineWebApp.Filters;
+using EntrecineWebApp.Models;
+using Microsoft.Web.WebPages.OAuth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using EntrecineWebApp.Filters;
-using EntrecineWebApp.Models;
 
 namespace EntrecineWebApp.Controllers {
+
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller {
@@ -284,6 +284,7 @@ namespace EntrecineWebApp.Controllers {
         }
 
         #region Aplicaciones auxiliares
+
         private ActionResult RedirectToLocal(string returnUrl) {
             if (Url.IsLocalUrl(returnUrl)) {
                 return Redirect(returnUrl);
@@ -300,12 +301,14 @@ namespace EntrecineWebApp.Controllers {
         }
 
         internal class ExternalLoginResult : ActionResult {
+
             public ExternalLoginResult(string provider, string returnUrl) {
                 Provider = provider;
                 ReturnUrl = returnUrl;
             }
 
             public string Provider { get; private set; }
+
             public string ReturnUrl { get; private set; }
 
             public override void ExecuteResult(ControllerContext context) {
@@ -348,6 +351,7 @@ namespace EntrecineWebApp.Controllers {
                     return "Error desconocido. Compruebe los datos especificados e inténtelo de nuevo. Si el problema continúa, póngase en contacto con el administrador del sistema.";
             }
         }
-        #endregion
+
+        #endregion Aplicaciones auxiliares
     }
 }
