@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EntrecineWebApp
+namespace EntrecineWebApp.Models
 {
     using System;
     using System.Collections.Generic;
