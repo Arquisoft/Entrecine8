@@ -13,10 +13,10 @@ namespace EntrecineWebApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntityModelContainer : DbContext
+    public partial class EntrecineModelContainer : DbContext
     {
-        public EntityModelContainer()
-            : base("name=EntityModelContainer")
+        public EntrecineModelContainer()
+            : base("name=EntrecineModelContainer")
         {
         }
     

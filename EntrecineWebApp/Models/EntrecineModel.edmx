@@ -4,35 +4,35 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="EntityModelStoreContainer">
-    <EntitySet Name="ReservaConjunto" EntityType="EntityModel.Store.ReservaConjunto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UsuarioConjunto" EntityType="EntityModel.Store.UsuarioConjunto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PeliculaConjunto" EntityType="EntityModel.Store.PeliculaConjunto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SesionConjunto" EntityType="EntityModel.Store.SesionConjunto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DescuentoConjunto" EntityType="EntityModel.Store.DescuentoConjunto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FavoritasConjunto" EntityType="EntityModel.Store.FavoritasConjunto" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="PeliculaFavoritas" Association="EntityModel.Store.PeliculaFavoritas">
+    <Schema Namespace="EntrecineModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="EntrecineModelStoreContainer">
+    <EntitySet Name="ReservaConjunto" EntityType="EntrecineModel.Store.ReservaConjunto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsuarioConjunto" EntityType="EntrecineModel.Store.UsuarioConjunto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PeliculaConjunto" EntityType="EntrecineModel.Store.PeliculaConjunto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SesionConjunto" EntityType="EntrecineModel.Store.SesionConjunto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DescuentoConjunto" EntityType="EntrecineModel.Store.DescuentoConjunto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FavoritasConjunto" EntityType="EntrecineModel.Store.FavoritasConjunto" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PeliculaFavoritas" Association="EntrecineModel.Store.PeliculaFavoritas">
       <End Role="Pelicula" EntitySet="PeliculaConjunto" />
       <End Role="Favoritas" EntitySet="FavoritasConjunto" />
     </AssociationSet>
-    <AssociationSet Name="FavoritasUsuario" Association="EntityModel.Store.FavoritasUsuario">
+    <AssociationSet Name="FavoritasUsuario" Association="EntrecineModel.Store.FavoritasUsuario">
       <End Role="Favoritas" EntitySet="FavoritasConjunto" />
       <End Role="Usuario" EntitySet="UsuarioConjunto" />
     </AssociationSet>
-    <AssociationSet Name="DescuentoSesion" Association="EntityModel.Store.DescuentoSesion">
+    <AssociationSet Name="DescuentoSesion" Association="EntrecineModel.Store.DescuentoSesion">
       <End Role="Descuento" EntitySet="DescuentoConjunto" />
       <End Role="Sesion" EntitySet="SesionConjunto" />
     </AssociationSet>
-    <AssociationSet Name="SesionPelicula" Association="EntityModel.Store.SesionPelicula">
+    <AssociationSet Name="SesionPelicula" Association="EntrecineModel.Store.SesionPelicula">
       <End Role="Sesion" EntitySet="SesionConjunto" />
       <End Role="Pelicula" EntitySet="PeliculaConjunto" />
     </AssociationSet>
-    <AssociationSet Name="SesionReserva" Association="EntityModel.Store.SesionReserva">
+    <AssociationSet Name="SesionReserva" Association="EntrecineModel.Store.SesionReserva">
       <End Role="Sesion" EntitySet="SesionConjunto" />
       <End Role="Reserva" EntitySet="ReservaConjunto" />
     </AssociationSet>
-    <AssociationSet Name="ReservaUsuario" Association="EntityModel.Store.ReservaUsuario">
+    <AssociationSet Name="ReservaUsuario" Association="EntrecineModel.Store.ReservaUsuario">
       <End Role="Reserva" EntitySet="ReservaConjunto" />
       <End Role="Usuario" EntitySet="UsuarioConjunto" />
     </AssociationSet>
@@ -96,8 +96,8 @@
     <Property Name="Usuario_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PeliculaFavoritas">
-    <End Role="Pelicula" Type="EntityModel.Store.PeliculaConjunto" Multiplicity="1" />
-    <End Role="Favoritas" Type="EntityModel.Store.FavoritasConjunto" Multiplicity="*" />
+    <End Role="Pelicula" Type="EntrecineModel.Store.PeliculaConjunto" Multiplicity="1" />
+    <End Role="Favoritas" Type="EntrecineModel.Store.FavoritasConjunto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pelicula">
         <PropertyRef Name="Id" />
@@ -108,8 +108,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FavoritasUsuario">
-    <End Role="Favoritas" Type="EntityModel.Store.FavoritasConjunto" Multiplicity="*" />
-    <End Role="Usuario" Type="EntityModel.Store.UsuarioConjunto" Multiplicity="1" />
+    <End Role="Favoritas" Type="EntrecineModel.Store.FavoritasConjunto" Multiplicity="*" />
+    <End Role="Usuario" Type="EntrecineModel.Store.UsuarioConjunto" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
         <PropertyRef Name="Id" />
@@ -120,8 +120,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="DescuentoSesion">
-    <End Role="Descuento" Type="EntityModel.Store.DescuentoConjunto" Multiplicity="1" />
-    <End Role="Sesion" Type="EntityModel.Store.SesionConjunto" Multiplicity="*" />
+    <End Role="Descuento" Type="EntrecineModel.Store.DescuentoConjunto" Multiplicity="1" />
+    <End Role="Sesion" Type="EntrecineModel.Store.SesionConjunto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Descuento">
         <PropertyRef Name="Id" />
@@ -132,8 +132,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SesionPelicula">
-    <End Role="Sesion" Type="EntityModel.Store.SesionConjunto" Multiplicity="*" />
-    <End Role="Pelicula" Type="EntityModel.Store.PeliculaConjunto" Multiplicity="1" />
+    <End Role="Sesion" Type="EntrecineModel.Store.SesionConjunto" Multiplicity="*" />
+    <End Role="Pelicula" Type="EntrecineModel.Store.PeliculaConjunto" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Pelicula">
         <PropertyRef Name="Id" />
@@ -144,8 +144,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SesionReserva">
-    <End Role="Sesion" Type="EntityModel.Store.SesionConjunto" Multiplicity="1" />
-    <End Role="Reserva" Type="EntityModel.Store.ReservaConjunto" Multiplicity="*" />
+    <End Role="Sesion" Type="EntrecineModel.Store.SesionConjunto" Multiplicity="1" />
+    <End Role="Reserva" Type="EntrecineModel.Store.ReservaConjunto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sesion">
         <PropertyRef Name="Id" />
@@ -156,8 +156,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ReservaUsuario">
-    <End Role="Reserva" Type="EntityModel.Store.ReservaConjunto" Multiplicity="*" />
-    <End Role="Usuario" Type="EntityModel.Store.UsuarioConjunto" Multiplicity="1" />
+    <End Role="Reserva" Type="EntrecineModel.Store.ReservaConjunto" Multiplicity="*" />
+    <End Role="Usuario" Type="EntrecineModel.Store.UsuarioConjunto" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Usuario">
         <PropertyRef Name="Id" />
@@ -314,7 +314,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="EntityModelStoreContainer" CdmEntityContainer="EntrecineModelContainer">
+  <EntityContainerMapping StorageEntityContainer="EntrecineModelStoreContainer" CdmEntityContainer="EntrecineModelContainer">
     <EntitySetMapping Name="ReservaConjunto">
       <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Reserva)">
         <MappingFragment StoreEntitySet="ReservaConjunto">

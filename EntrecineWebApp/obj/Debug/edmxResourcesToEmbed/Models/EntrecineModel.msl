@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EntrecineModelStoreContainer" CdmEntityContainer="EntrecineModelContainer">
+    <EntitySetMapping Name="ReservaConjunto">
+      <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Reserva)">
+        <MappingFragment StoreEntitySet="ReservaConjunto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sala" ColumnName="Sala" />
+          <ScalarProperty Name="Fila" ColumnName="Fila" />
+          <ScalarProperty Name="Columna" ColumnName="Columna" />
+          <ScalarProperty Name="SesionId" ColumnName="SesionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioConjunto">
+      <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Usuario)">
+        <MappingFragment StoreEntitySet="UsuarioConjunto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Administrador" ColumnName="Administrador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeliculaConjunto">
+      <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Pelicula)">
+        <MappingFragment StoreEntitySet="PeliculaConjunto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SesionConjunto">
+      <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Sesion)">
+        <MappingFragment StoreEntitySet="SesionConjunto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="DescuentoId" ColumnName="DescuentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DescuentoConjunto">
+      <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Descuento)">
+        <MappingFragment StoreEntitySet="DescuentoConjunto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FavoritasConjunto">
+      <EntityTypeMapping TypeName="IsTypeOf(EntrecineModel.Favoritas)">
+        <MappingFragment StoreEntitySet="FavoritasConjunto">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PeliculaFavoritas" TypeName="EntrecineModel.PeliculaFavoritas" StoreEntitySet="FavoritasConjunto">
+      <EndProperty Name="Pelicula">
+        <ScalarProperty Name="Id" ColumnName="Pelicula_Id" />
+      </EndProperty>
+      <EndProperty Name="Favoritas">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FavoritasUsuario" TypeName="EntrecineModel.FavoritasUsuario" StoreEntitySet="FavoritasConjunto">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+      </EndProperty>
+      <EndProperty Name="Favoritas">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SesionPelicula" TypeName="EntrecineModel.SesionPelicula" StoreEntitySet="SesionConjunto">
+      <EndProperty Name="Pelicula">
+        <ScalarProperty Name="Id" ColumnName="Pelicula_Id" />
+      </EndProperty>
+      <EndProperty Name="Sesion">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ReservaUsuario" TypeName="EntrecineModel.ReservaUsuario" StoreEntitySet="ReservaConjunto">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+      </EndProperty>
+      <EndProperty Name="Reserva">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

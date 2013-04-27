@@ -26,6 +26,7 @@ namespace EntrecineWebApp.Models
         public string Email { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public bool Administrador { get; set; }
     
         public virtual ICollection<Favoritas> Favoritas { get; set; }
         public virtual ICollection<Reserva> Reserva { get; set; }

@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/25/2013 20:27:17
--- Generated from EDMX file: C:\Users\Desarrollo\Documents\GitHub\Entrecine8\EntrecineWebApp\Models\EntityModel.edmx
+-- Date Created: 04/27/2013 13:30:08
+-- Generated from EDMX file: C:\Users\Desarrollo\Documents\GitHub\Entrecine8\EntrecineWebApp\Models\EntrecineModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Entrecine];
+USE [EntrecineDB];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,11 +17,47 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_PeliculaFavoritas]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FavoritasConjunto] DROP CONSTRAINT [FK_PeliculaFavoritas];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FavoritasUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FavoritasConjunto] DROP CONSTRAINT [FK_FavoritasUsuario];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DescuentoSesion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SesionConjunto] DROP CONSTRAINT [FK_DescuentoSesion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SesionPelicula]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SesionConjunto] DROP CONSTRAINT [FK_SesionPelicula];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SesionReserva]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReservaConjunto] DROP CONSTRAINT [FK_SesionReserva];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ReservaUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReservaConjunto] DROP CONSTRAINT [FK_ReservaUsuario];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[ReservaConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ReservaConjunto];
+GO
+IF OBJECT_ID(N'[dbo].[UsuarioConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UsuarioConjunto];
+GO
+IF OBJECT_ID(N'[dbo].[PeliculaConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PeliculaConjunto];
+GO
+IF OBJECT_ID(N'[dbo].[SesionConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SesionConjunto];
+GO
+IF OBJECT_ID(N'[dbo].[DescuentoConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DescuentoConjunto];
+GO
+IF OBJECT_ID(N'[dbo].[FavoritasConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FavoritasConjunto];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables

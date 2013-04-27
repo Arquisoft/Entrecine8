@@ -189,6 +189,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\Descuento.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
@@ -202,23 +205,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Favoritas.cs">
-      <DependentUpon>EntrecineModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Models\EntrecineModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntrecineModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Favoritas.cs">
+      <DependentUpon>EntrecineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Pelicula.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Reserva.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
@@ -228,6 +227,7 @@
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
