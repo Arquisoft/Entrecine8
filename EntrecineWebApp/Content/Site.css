@@ -743,4 +743,31 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+        
+    /*
+       Estilos de entrecine
+        */
+    .movie25 {
+        margin:0 !important;
+    }
+}
+
+
+/*
+  Estilos de entrecine
+*/
+#movieFeatured {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.movie25 {
+    display: inline;
+    margin: 0 45px 0 0;
+}
+
+.movie25 img {
+    width: 150px;
+    height: 217px;
+    box-shadow: 0px 0px 8px #fff;
 }
