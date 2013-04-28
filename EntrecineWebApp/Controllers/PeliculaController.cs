@@ -58,6 +58,11 @@ namespace EntrecineWebApp.Controllers
             {
                 db.PeliculaConjunto.Add(pelicula);
                 db.SaveChanges();
+                foreach (string file in Request.Files)
+                {
+                    var postedFile = Request.Files[file];
+                    postedFile.SaveAs(Server.MapPath("~/UploadedFiles") + pelicula.Id);
+                }
                 return RedirectToAction("Index");
             }
 
