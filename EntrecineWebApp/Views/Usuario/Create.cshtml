@@ -1,10 +1,13 @@
 ﻿@model EntrecineWebApp.Models.Usuario
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Registrarse";
 }
 
-<h2>Create</h2>
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Cree una cuenta nueva.</h2>
+</hgroup>
+
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -53,23 +56,11 @@
             @Html.ValidationMessageFor(model => model.Password)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Administrador)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Administrador)
-            @Html.ValidationMessageFor(model => model.Administrador)
-        </div>
-
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Registrarse" />
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
