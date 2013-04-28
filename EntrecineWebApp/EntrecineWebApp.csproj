@@ -216,6 +216,7 @@
     <Compile Include="Models\Pelicula.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PeliculaAnnotation.cs" />
     <Compile Include="Models\Reserva.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
@@ -363,6 +364,7 @@
     <Content Include="Views\Pelicula\Edit.cshtml" />
     <Content Include="Views\Pelicula\Delete.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Pelicula\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

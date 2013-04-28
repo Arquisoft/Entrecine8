@@ -21,6 +21,11 @@ namespace EntrecineWebApp.Controllers
             return View(db.PeliculaConjunto.ToList());
         }
 
+        public ActionResult Lista()
+        {
+            return View(db.PeliculaConjunto.ToList());
+        }
+
         //
         // GET: /Pelicula/Details/5
 

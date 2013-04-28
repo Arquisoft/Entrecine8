@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<!--Prueba CSS incrustado-->
+
+<style type="text/css">
+    h2 {
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    .contenedorPeli {
+        clear: both;
+    }
+    .pelicula {
+        min-width: 90%;
+        border-top: solid;
+        border-width: medium;
+        max-height: 400px;
+        margin-bottom: 5em;
+        padding: 1em;
+    }
+
+    .portada {
+        width: 30%;
+        float: left;
+    }
+
+    .datosPeli {
+        width: 55%;
+        float: right;
+    }
+</style>
+
+<h2>Listado de películas</h2>
+
+<div id="listadoPelis">
+
+    @foreach (var item in Model)
+    {
+    <div class="contenedorPeli">
+        <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3>
+        <div class="pelicula">
+
+            <div class="portada">
+                <img src="~/Images/cartelera_1.jpg" alt="Poster" />
+            </div>
+
+            <div class="datosPeli">
+                Precio: @Html.DisplayFor(modelItem => item.Precio)
+                Duración: @Html.DisplayFor(modelItem => item.Duracion) minutos
+                <p class="descripcion">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+            </div>
+        </div>
+    </div>
+    }
+
+</div>
