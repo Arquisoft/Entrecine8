@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EntrecineWebApp.Models;
+using System.Web.Security;
 
 namespace EntrecineWebApp.Controllers
 {
@@ -13,41 +14,67 @@ namespace EntrecineWebApp.Controllers
     {
         private EntrecineModelContainer db = new EntrecineModelContainer();
 
+
+        //
+        // GET: /Usuario/Login/
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+
+        //
+        // GET: /Usuario/Login/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Models.LoginModel usuarioLogin)
+        {
+            if (ModelState.IsValid)
+            {
+                Usuario usuario = db.UsuarioConjunto.FirstOrDefault<Usuario>(x => x.Login == usuarioLogin.Login && x.Password == usuarioLogin.Password);
+                if (usuario != null)
+                {
+                    FormsAuthentication.SetAuthCookie(usuarioLogin.Login, usuarioLogin.RememberMe);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "El usuario o la contraseña es incorrecta");
+                }
+            }
+            return View(usuarioLogin);
+        }
+
+        //
+        // GET: /Usuario/Logput/
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         //
         // GET: /Usuario/
-
         public ActionResult Index()
         {
             return View(db.UsuarioConjunto.ToList());
         }
 
         //
-        // GET: /Usuario/Details/5
+        // GET: /Usuario/Registro
 
-        public ActionResult Details(int id = 0)
-        {
-            Usuario usuario = db.UsuarioConjunto.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(usuario);
-        }
-
-        //
-        // GET: /Usuario/Create
-
-        public ActionResult Create()
+        public ActionResult Registro()
         {
             return View();
         }
 
         //
-        // POST: /Usuario/Create
-
+        // POST: /Usuario/Registro
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuario usuario)
+        public ActionResult Registro(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +83,19 @@ namespace EntrecineWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            return View(usuario);
+        }
+
+
+        //
+        // GET: /Usuario/Details/5
+        public ActionResult Details(int id = 0)
+        {
+            Usuario usuario = db.UsuarioConjunto.Find(id);
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
             return View(usuario);
         }
 
