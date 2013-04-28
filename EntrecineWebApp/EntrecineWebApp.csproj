@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -367,6 +368,11 @@
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Movies\Create.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

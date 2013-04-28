@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using EntrecineWebApp.Models;
+
+namespace EntrecineWebApp.Controllers
+{
+    public class MoviesController : Controller
+    {
+        private EntrecineModelContainer db = new EntrecineModelContainer();
+
+        //
+        // GET: /Movies/
+
+        public ActionResult Index()
+        {
+            return View(db.PeliculaConjunto.ToList());
+        }
+
+        //
+        // GET: /Movies/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            Pelicula pelicula = db.PeliculaConjunto.Find(id);
+            if (pelicula == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pelicula);
+        }
+
+        //
+        // GET: /Movies/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Movies/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Pelicula pelicula)
+        {
+            if (ModelState.IsValid)
+            {
+                db.PeliculaConjunto.Add(pelicula);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(pelicula);
+        }
+
+        //
+        // GET: /Movies/Edit/5
+
+        public ActionResult Edit(int id = 0)
+        {
+            Pelicula pelicula = db.PeliculaConjunto.Find(id);
+            if (pelicula == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pelicula);
+        }
+
+        //
+        // POST: /Movies/Edit/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Pelicula pelicula)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(pelicula).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(pelicula);
+        }
+
+        //
+        // GET: /Movies/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            Pelicula pelicula = db.PeliculaConjunto.Find(id);
+            if (pelicula == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pelicula);
+        }
+
+        //
+        // POST: /Movies/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Pelicula pelicula = db.PeliculaConjunto.Find(id);
+            db.PeliculaConjunto.Remove(pelicula);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+}
