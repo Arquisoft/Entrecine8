@@ -47,8 +47,7 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // GET: /Usuario/Logput/
-        [HttpGet]
+        // GET: /Usuario/Logout/
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
