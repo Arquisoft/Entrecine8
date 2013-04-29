@@ -30,6 +30,6 @@ namespace EntrecineWebApp.Models
         public DbSet<Pelicula> PeliculaConjunto { get; set; }
         public DbSet<Sesion> SesionConjunto { get; set; }
         public DbSet<Descuento> DescuentoConjunto { get; set; }
-        public DbSet<Favoritas> FavoritasConjunto { get; set; }
+        public DbSet<Sala> SalaConjunto { get; set; }
     }
 }

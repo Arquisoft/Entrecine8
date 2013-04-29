@@ -39,8 +39,8 @@ namespace EntrecineWebApp.Models
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
-        [DefaultValue(false)]
-        public bool Administrador { get; set; }
+        [DefaultValue(0)]
+        public int Rol { get; set; }
 
     }
 }

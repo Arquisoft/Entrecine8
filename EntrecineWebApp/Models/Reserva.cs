@@ -15,7 +15,6 @@ namespace EntrecineWebApp.Models
     public partial class Reserva
     {
         public int Id { get; set; }
-        public int Sala { get; set; }
         public int Fila { get; set; }
         public int Columna { get; set; }
         public int SesionId { get; set; }

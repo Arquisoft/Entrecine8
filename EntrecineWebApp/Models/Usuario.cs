@@ -16,8 +16,8 @@ namespace EntrecineWebApp.Models
     {
         public Usuario()
         {
-            this.Favoritas = new HashSet<Favoritas>();
             this.Reserva = new HashSet<Reserva>();
+            this.Pelicula = new HashSet<Pelicula>();
         }
     
         public int Id { get; set; }
@@ -26,9 +26,9 @@ namespace EntrecineWebApp.Models
         public string Email { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public bool Administrador { get; set; }
+        public int Rol { get; set; }
     
-        public virtual ICollection<Favoritas> Favoritas { get; set; }
         public virtual ICollection<Reserva> Reserva { get; set; }
+        public virtual ICollection<Pelicula> Pelicula { get; set; }
     }
 }

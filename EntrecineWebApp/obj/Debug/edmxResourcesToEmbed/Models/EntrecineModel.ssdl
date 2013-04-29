@@ -6,15 +6,8 @@
     <EntitySet Name="PeliculaConjunto" EntityType="EntrecineModel.Store.PeliculaConjunto" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SesionConjunto" EntityType="EntrecineModel.Store.SesionConjunto" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DescuentoConjunto" EntityType="EntrecineModel.Store.DescuentoConjunto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FavoritasConjunto" EntityType="EntrecineModel.Store.FavoritasConjunto" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="PeliculaFavoritas" Association="EntrecineModel.Store.PeliculaFavoritas">
-      <End Role="Pelicula" EntitySet="PeliculaConjunto" />
-      <End Role="Favoritas" EntitySet="FavoritasConjunto" />
-    </AssociationSet>
-    <AssociationSet Name="FavoritasUsuario" Association="EntrecineModel.Store.FavoritasUsuario">
-      <End Role="Favoritas" EntitySet="FavoritasConjunto" />
-      <End Role="Usuario" EntitySet="UsuarioConjunto" />
-    </AssociationSet>
+    <EntitySet Name="SalaConjunto" EntityType="EntrecineModel.Store.SalaConjunto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PeliculaUsuario" EntityType="EntrecineModel.Store.PeliculaUsuario" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="DescuentoSesion" Association="EntrecineModel.Store.DescuentoSesion">
       <End Role="Descuento" EntitySet="DescuentoConjunto" />
       <End Role="Sesion" EntitySet="SesionConjunto" />
@@ -31,13 +24,24 @@
       <End Role="Reserva" EntitySet="ReservaConjunto" />
       <End Role="Usuario" EntitySet="UsuarioConjunto" />
     </AssociationSet>
+    <AssociationSet Name="SalaSesion" Association="EntrecineModel.Store.SalaSesion">
+      <End Role="Sala" EntitySet="SalaConjunto" />
+      <End Role="Sesion" EntitySet="SesionConjunto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PeliculaUsuario_Pelicula" Association="EntrecineModel.Store.FK_PeliculaUsuario_Pelicula">
+      <End Role="Pelicula" EntitySet="PeliculaConjunto" />
+      <End Role="PeliculaUsuario" EntitySet="PeliculaUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PeliculaUsuario_Usuario" Association="EntrecineModel.Store.FK_PeliculaUsuario_Usuario">
+      <End Role="Usuario" EntitySet="UsuarioConjunto" />
+      <End Role="PeliculaUsuario" EntitySet="PeliculaUsuario" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ReservaConjunto">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Sala" Type="int" Nullable="false" />
     <Property Name="Fila" Type="int" Nullable="false" />
     <Property Name="Columna" Type="int" Nullable="false" />
     <Property Name="SesionId" Type="int" Nullable="false" />
@@ -53,7 +57,7 @@
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Administrador" Type="bit" Nullable="false" />
+    <Property Name="Rol" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PeliculaConjunto">
     <Key>
@@ -72,6 +76,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Fecha" Type="time" Nullable="false" />
     <Property Name="DescuentoId" Type="int" Nullable="false" />
+    <Property Name="SalaId" Type="int" Nullable="false" />
     <Property Name="Pelicula_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DescuentoConjunto">
@@ -82,38 +87,22 @@
     <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Porcentaje" Type="float" Nullable="false" />
   </EntityType>
-  <EntityType Name="FavoritasConjunto">
+  <EntityType Name="SalaConjunto">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Filas" Type="int" Nullable="false" />
+    <Property Name="Columnas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PeliculaUsuario">
+    <Key>
+      <PropertyRef Name="Pelicula_Id" />
+      <PropertyRef Name="Usuario_Id" />
+    </Key>
     <Property Name="Pelicula_Id" Type="int" Nullable="false" />
     <Property Name="Usuario_Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="PeliculaFavoritas">
-    <End Role="Pelicula" Type="EntrecineModel.Store.PeliculaConjunto" Multiplicity="1" />
-    <End Role="Favoritas" Type="EntrecineModel.Store.FavoritasConjunto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pelicula">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Favoritas">
-        <PropertyRef Name="Pelicula_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FavoritasUsuario">
-    <End Role="Favoritas" Type="EntrecineModel.Store.FavoritasConjunto" Multiplicity="*" />
-    <End Role="Usuario" Type="EntrecineModel.Store.UsuarioConjunto" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Favoritas">
-        <PropertyRef Name="Usuario_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="DescuentoSesion">
     <End Role="Descuento" Type="EntrecineModel.Store.DescuentoConjunto" Multiplicity="1" />
     <End Role="Sesion" Type="EntrecineModel.Store.SesionConjunto" Multiplicity="*" />
@@ -158,6 +147,42 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Reserva">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SalaSesion">
+    <End Role="Sala" Type="EntrecineModel.Store.SalaConjunto" Multiplicity="1" />
+    <End Role="Sesion" Type="EntrecineModel.Store.SesionConjunto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sala">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sesion">
+        <PropertyRef Name="SalaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PeliculaUsuario_Pelicula">
+    <End Role="Pelicula" Type="EntrecineModel.Store.PeliculaConjunto" Multiplicity="1" />
+    <End Role="PeliculaUsuario" Type="EntrecineModel.Store.PeliculaUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pelicula">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PeliculaUsuario">
+        <PropertyRef Name="Pelicula_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PeliculaUsuario_Usuario">
+    <End Role="PeliculaUsuario" Type="EntrecineModel.Store.PeliculaUsuario" Multiplicity="*" />
+    <End Role="Usuario" Type="EntrecineModel.Store.UsuarioConjunto" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PeliculaUsuario">
         <PropertyRef Name="Usuario_Id" />
       </Dependent>
     </ReferentialConstraint>

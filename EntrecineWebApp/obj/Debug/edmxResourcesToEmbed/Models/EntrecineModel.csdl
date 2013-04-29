@@ -6,15 +6,6 @@
     <EntitySet Name="PeliculaConjunto" EntityType="EntrecineModel.Pelicula" />
     <EntitySet Name="SesionConjunto" EntityType="EntrecineModel.Sesion" />
     <EntitySet Name="DescuentoConjunto" EntityType="EntrecineModel.Descuento" />
-    <EntitySet Name="FavoritasConjunto" EntityType="EntrecineModel.Favoritas" />
-    <AssociationSet Name="PeliculaFavoritas" Association="EntrecineModel.PeliculaFavoritas">
-      <End Role="Pelicula" EntitySet="PeliculaConjunto" />
-      <End Role="Favoritas" EntitySet="FavoritasConjunto" />
-    </AssociationSet>
-    <AssociationSet Name="FavoritasUsuario" Association="EntrecineModel.FavoritasUsuario">
-      <End Role="Favoritas" EntitySet="FavoritasConjunto" />
-      <End Role="Usuario" EntitySet="UsuarioConjunto" />
-    </AssociationSet>
     <AssociationSet Name="DescuentoSesion" Association="EntrecineModel.DescuentoSesion">
       <End Role="Descuento" EntitySet="DescuentoConjunto" />
       <End Role="Sesion" EntitySet="SesionConjunto" />
@@ -31,13 +22,21 @@
       <End Role="Reserva" EntitySet="ReservaConjunto" />
       <End Role="Usuario" EntitySet="UsuarioConjunto" />
     </AssociationSet>
+    <EntitySet Name="SalaConjunto" EntityType="EntrecineModel.Sala" />
+    <AssociationSet Name="SalaSesion" Association="EntrecineModel.SalaSesion">
+      <End Role="Sala" EntitySet="SalaConjunto" />
+      <End Role="Sesion" EntitySet="SesionConjunto" />
+    </AssociationSet>
+    <AssociationSet Name="PeliculaUsuario" Association="EntrecineModel.PeliculaUsuario">
+      <End Role="Pelicula" EntitySet="PeliculaConjunto" />
+      <End Role="Usuario" EntitySet="UsuarioConjunto" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Reserva">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="Sala" Nullable="false" />
     <Property Type="Int32" Name="Fila" Nullable="false" />
     <Property Type="Int32" Name="Columna" Nullable="false" />
     <NavigationProperty Name="Sesion" Relationship="EntrecineModel.SesionReserva" FromRole="Reserva" ToRole="Sesion" />
@@ -54,9 +53,9 @@
     <Property Type="String" Name="Email" Nullable="false" />
     <Property Type="String" Name="Login" Nullable="false" />
     <Property Type="String" Name="Password" Nullable="false" />
-    <NavigationProperty Name="Favoritas" Relationship="EntrecineModel.FavoritasUsuario" FromRole="Usuario" ToRole="Favoritas" />
     <NavigationProperty Name="Reserva" Relationship="EntrecineModel.ReservaUsuario" FromRole="Usuario" ToRole="Reserva" />
-    <Property Type="Boolean" Name="Administrador" Nullable="false" />
+    <Property Type="Int32" Name="Rol" Nullable="false" />
+    <NavigationProperty Name="Pelicula" Relationship="EntrecineModel.PeliculaUsuario" FromRole="Usuario" ToRole="Pelicula" />
   </EntityType>
   <EntityType Name="Pelicula">
     <Key>
@@ -67,8 +66,8 @@
     <Property Type="String" Name="Descripcion" Nullable="false" />
     <Property Type="Double" Name="Precio" Nullable="false" />
     <Property Type="Int32" Name="Duracion" Nullable="false" />
-    <NavigationProperty Name="Favoritas" Relationship="EntrecineModel.PeliculaFavoritas" FromRole="Pelicula" ToRole="Favoritas" />
     <NavigationProperty Name="Sesion" Relationship="EntrecineModel.SesionPelicula" FromRole="Pelicula" ToRole="Sesion" />
+    <NavigationProperty Name="Usuario" Relationship="EntrecineModel.PeliculaUsuario" FromRole="Pelicula" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="Sesion">
     <Key>
@@ -80,6 +79,8 @@
     <Property Type="Int32" Name="DescuentoId" Nullable="false" />
     <NavigationProperty Name="Pelicula" Relationship="EntrecineModel.SesionPelicula" FromRole="Sesion" ToRole="Pelicula" />
     <NavigationProperty Name="Reserva" Relationship="EntrecineModel.SesionReserva" FromRole="Sesion" ToRole="Reserva" />
+    <NavigationProperty Name="Sala" Relationship="EntrecineModel.SalaSesion" FromRole="Sesion" ToRole="Sala" />
+    <Property Type="Int32" Name="SalaId" Nullable="false" />
   </EntityType>
   <EntityType Name="Descuento">
     <Key>
@@ -90,22 +91,6 @@
     <Property Type="Double" Name="Porcentaje" Nullable="false" />
     <NavigationProperty Name="Sesion" Relationship="EntrecineModel.DescuentoSesion" FromRole="Descuento" ToRole="Sesion" />
   </EntityType>
-  <EntityType Name="Favoritas">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Pelicula" Relationship="EntrecineModel.PeliculaFavoritas" FromRole="Favoritas" ToRole="Pelicula" />
-    <NavigationProperty Name="Usuario" Relationship="EntrecineModel.FavoritasUsuario" FromRole="Favoritas" ToRole="Usuario" />
-  </EntityType>
-  <Association Name="PeliculaFavoritas">
-    <End Type="EntrecineModel.Pelicula" Role="Pelicula" Multiplicity="1" />
-    <End Type="EntrecineModel.Favoritas" Role="Favoritas" Multiplicity="*" />
-  </Association>
-  <Association Name="FavoritasUsuario">
-    <End Type="EntrecineModel.Favoritas" Role="Favoritas" Multiplicity="*" />
-    <End Type="EntrecineModel.Usuario" Role="Usuario" Multiplicity="1" />
-  </Association>
   <Association Name="DescuentoSesion">
     <End Type="EntrecineModel.Descuento" Role="Descuento" Multiplicity="1" />
     <End Type="EntrecineModel.Sesion" Role="Sesion" Multiplicity="*" />
@@ -137,5 +122,30 @@
   <Association Name="ReservaUsuario">
     <End Type="EntrecineModel.Reserva" Role="Reserva" Multiplicity="*" />
     <End Type="EntrecineModel.Usuario" Role="Usuario" Multiplicity="1" />
+  </Association>
+  <EntityType Name="Sala">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Filas" Nullable="false" />
+    <Property Type="Int32" Name="Columnas" Nullable="false" />
+    <NavigationProperty Name="Sesion" Relationship="EntrecineModel.SalaSesion" FromRole="Sala" ToRole="Sesion" />
+  </EntityType>
+  <Association Name="SalaSesion">
+    <End Type="EntrecineModel.Sala" Role="Sala" Multiplicity="1" />
+    <End Type="EntrecineModel.Sesion" Role="Sesion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sala">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sesion">
+        <PropertyRef Name="SalaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PeliculaUsuario">
+    <End Type="EntrecineModel.Pelicula" Role="Pelicula" Multiplicity="*" />
+    <End Type="EntrecineModel.Usuario" Role="Usuario" Multiplicity="*" />
   </Association>
 </Schema>

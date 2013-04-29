@@ -22,9 +22,11 @@ namespace EntrecineWebApp.Models
         public int Id { get; set; }
         public System.TimeSpan Fecha { get; set; }
         public int DescuentoId { get; set; }
+        public int SalaId { get; set; }
     
         public virtual Descuento Descuento { get; set; }
         public virtual Pelicula Pelicula { get; set; }
         public virtual ICollection<Reserva> Reserva { get; set; }
+        public virtual Sala Sala { get; set; }
     }
 }

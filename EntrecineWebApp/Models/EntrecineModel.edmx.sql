@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/28/2013 16:54:19
+-- Date Created: 04/29/2013 11:11:30
 -- Generated from EDMX file: C:\Users\Desarrollo\Documents\GitHub\Entrecine8\EntrecineWebApp\Models\EntrecineModel.edmx
 -- --------------------------------------------------
 
@@ -17,12 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_PeliculaFavoritas]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FavoritasConjunto] DROP CONSTRAINT [FK_PeliculaFavoritas];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FavoritasUsuario]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FavoritasConjunto] DROP CONSTRAINT [FK_FavoritasUsuario];
-GO
 IF OBJECT_ID(N'[dbo].[FK_DescuentoSesion]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SesionConjunto] DROP CONSTRAINT [FK_DescuentoSesion];
 GO
@@ -55,9 +49,6 @@ GO
 IF OBJECT_ID(N'[dbo].[DescuentoConjunto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DescuentoConjunto];
 GO
-IF OBJECT_ID(N'[dbo].[FavoritasConjunto]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FavoritasConjunto];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -66,7 +57,6 @@ GO
 -- Creating table 'ReservaConjunto'
 CREATE TABLE [dbo].[ReservaConjunto] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Sala] int  NOT NULL,
     [Fila] int  NOT NULL,
     [Columna] int  NOT NULL,
     [SesionId] int  NOT NULL,
@@ -82,7 +72,7 @@ CREATE TABLE [dbo].[UsuarioConjunto] (
     [Email] nvarchar(max)  NOT NULL,
     [Login] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
-    [Administrador] bit  NOT NULL
+    [Rol] int  NOT NULL
 );
 GO
 
@@ -101,6 +91,7 @@ CREATE TABLE [dbo].[SesionConjunto] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Fecha] time  NOT NULL,
     [DescuentoId] int  NOT NULL,
+    [SalaId] int  NOT NULL,
     [Pelicula_Id] int  NOT NULL
 );
 GO
@@ -113,9 +104,16 @@ CREATE TABLE [dbo].[DescuentoConjunto] (
 );
 GO
 
--- Creating table 'FavoritasConjunto'
-CREATE TABLE [dbo].[FavoritasConjunto] (
+-- Creating table 'SalaConjunto'
+CREATE TABLE [dbo].[SalaConjunto] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Filas] int  NOT NULL,
+    [Columnas] int  NOT NULL
+);
+GO
+
+-- Creating table 'PeliculaUsuario'
+CREATE TABLE [dbo].[PeliculaUsuario] (
     [Pelicula_Id] int  NOT NULL,
     [Usuario_Id] int  NOT NULL
 );
@@ -155,43 +153,21 @@ ADD CONSTRAINT [PK_DescuentoConjunto]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'FavoritasConjunto'
-ALTER TABLE [dbo].[FavoritasConjunto]
-ADD CONSTRAINT [PK_FavoritasConjunto]
+-- Creating primary key on [Id] in table 'SalaConjunto'
+ALTER TABLE [dbo].[SalaConjunto]
+ADD CONSTRAINT [PK_SalaConjunto]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Pelicula_Id], [Usuario_Id] in table 'PeliculaUsuario'
+ALTER TABLE [dbo].[PeliculaUsuario]
+ADD CONSTRAINT [PK_PeliculaUsuario]
+    PRIMARY KEY NONCLUSTERED ([Pelicula_Id], [Usuario_Id] ASC);
 GO
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Pelicula_Id] in table 'FavoritasConjunto'
-ALTER TABLE [dbo].[FavoritasConjunto]
-ADD CONSTRAINT [FK_PeliculaFavoritas]
-    FOREIGN KEY ([Pelicula_Id])
-    REFERENCES [dbo].[PeliculaConjunto]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PeliculaFavoritas'
-CREATE INDEX [IX_FK_PeliculaFavoritas]
-ON [dbo].[FavoritasConjunto]
-    ([Pelicula_Id]);
-GO
-
--- Creating foreign key on [Usuario_Id] in table 'FavoritasConjunto'
-ALTER TABLE [dbo].[FavoritasConjunto]
-ADD CONSTRAINT [FK_FavoritasUsuario]
-    FOREIGN KEY ([Usuario_Id])
-    REFERENCES [dbo].[UsuarioConjunto]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FavoritasUsuario'
-CREATE INDEX [IX_FK_FavoritasUsuario]
-ON [dbo].[FavoritasConjunto]
-    ([Usuario_Id]);
-GO
 
 -- Creating foreign key on [DescuentoId] in table 'SesionConjunto'
 ALTER TABLE [dbo].[SesionConjunto]
@@ -246,6 +222,43 @@ ADD CONSTRAINT [FK_ReservaUsuario]
 -- Creating non-clustered index for FOREIGN KEY 'FK_ReservaUsuario'
 CREATE INDEX [IX_FK_ReservaUsuario]
 ON [dbo].[ReservaConjunto]
+    ([Usuario_Id]);
+GO
+
+-- Creating foreign key on [SalaId] in table 'SesionConjunto'
+ALTER TABLE [dbo].[SesionConjunto]
+ADD CONSTRAINT [FK_SalaSesion]
+    FOREIGN KEY ([SalaId])
+    REFERENCES [dbo].[SalaConjunto]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SalaSesion'
+CREATE INDEX [IX_FK_SalaSesion]
+ON [dbo].[SesionConjunto]
+    ([SalaId]);
+GO
+
+-- Creating foreign key on [Pelicula_Id] in table 'PeliculaUsuario'
+ALTER TABLE [dbo].[PeliculaUsuario]
+ADD CONSTRAINT [FK_PeliculaUsuario_Pelicula]
+    FOREIGN KEY ([Pelicula_Id])
+    REFERENCES [dbo].[PeliculaConjunto]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Usuario_Id] in table 'PeliculaUsuario'
+ALTER TABLE [dbo].[PeliculaUsuario]
+ADD CONSTRAINT [FK_PeliculaUsuario_Usuario]
+    FOREIGN KEY ([Usuario_Id])
+    REFERENCES [dbo].[UsuarioConjunto]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PeliculaUsuario_Usuario'
+CREATE INDEX [IX_FK_PeliculaUsuario_Usuario]
+ON [dbo].[PeliculaUsuario]
     ([Usuario_Id]);
 GO
 

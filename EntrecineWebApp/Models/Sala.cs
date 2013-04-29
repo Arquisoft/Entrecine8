@@ -12,11 +12,17 @@ namespace EntrecineWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Favoritas
+    public partial class Sala
     {
-        public int Id { get; set; }
+        public Sala()
+        {
+            this.Sesion = new HashSet<Sesion>();
+        }
     
-        public virtual Pelicula Pelicula { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public int Id { get; set; }
+        public int Filas { get; set; }
+        public int Columnas { get; set; }
+    
+        public virtual ICollection<Sesion> Sesion { get; set; }
     }
 }

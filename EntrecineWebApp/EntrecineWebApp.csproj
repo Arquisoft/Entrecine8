@@ -210,14 +210,14 @@
       <DependentUpon>EntrecineModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\Favoritas.cs">
-      <DependentUpon>EntrecineModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Pelicula.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PeliculaAnnotation.cs" />
     <Compile Include="Models\Reserva.cs">
+      <DependentUpon>EntrecineModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sala.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sesion.cs">

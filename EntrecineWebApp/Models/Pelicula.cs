@@ -16,8 +16,8 @@ namespace EntrecineWebApp.Models
     {
         public Pelicula()
         {
-            this.Favoritas = new HashSet<Favoritas>();
             this.Sesion = new HashSet<Sesion>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
@@ -26,7 +26,7 @@ namespace EntrecineWebApp.Models
         public double Precio { get; set; }
         public int Duracion { get; set; }
     
-        public virtual ICollection<Favoritas> Favoritas { get; set; }
         public virtual ICollection<Sesion> Sesion { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

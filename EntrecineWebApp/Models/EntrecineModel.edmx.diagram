@@ -10,13 +10,13 @@
         <EntityTypeShape EntityType="EntrecineModel.Pelicula" Width="1.5" PointX="6.875" PointY="0.5" />
         <EntityTypeShape EntityType="EntrecineModel.Sesion" Width="1.5" PointX="3.625" PointY="0.625" />
         <EntityTypeShape EntityType="EntrecineModel.Descuento" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="EntrecineModel.Favoritas" Width="1.5" PointX="9.375" PointY="2.75" />
-        <AssociationConnector Association="EntrecineModel.PeliculaFavoritas" />
-        <AssociationConnector Association="EntrecineModel.FavoritasUsuario" />
         <AssociationConnector Association="EntrecineModel.DescuentoSesion" />
         <AssociationConnector Association="EntrecineModel.SesionPelicula" />
         <AssociationConnector Association="EntrecineModel.SesionReserva" />
         <AssociationConnector Association="EntrecineModel.ReservaUsuario" />
+        <EntityTypeShape EntityType="EntrecineModel.Sala" Width="1.5" PointX="0.5" PointY="3.5" />
+        <AssociationConnector Association="EntrecineModel.SalaSesion" />
+        <AssociationConnector Association="EntrecineModel.PeliculaUsuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
