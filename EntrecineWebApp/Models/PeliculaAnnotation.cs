@@ -10,6 +10,10 @@ namespace EntrecineWebApp.Models
     [MetadataType(typeof(PeliculaAnnotation))]
     public partial class Pelicula
     {
+
+        [Required]
+        [Display(Name = "Portada de la película")]
+        public HttpPostedFileBase Caratula { get; set; }
     }
 
     public class PeliculaAnnotation
@@ -35,6 +39,7 @@ namespace EntrecineWebApp.Models
         [DataType(DataType.Duration)]
         [Display(Name = "Duración (minutos)")]
         public int Duracion { get; set; }
+
     }
 
 }

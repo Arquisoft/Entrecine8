@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,11 +59,15 @@ namespace EntrecineWebApp.Controllers
             {
                 db.PeliculaConjunto.Add(pelicula);
                 db.SaveChanges();
-                foreach (string file in Request.Files)
+
+                if (pelicula.Caratula != null && pelicula.Caratula.ContentLength > 0)
                 {
-                    var postedFile = Request.Files[file];
-                    postedFile.SaveAs(Server.MapPath("~/UploadedFiles") + pelicula.Id);
+                    var filename = "caratula_" + pelicula.Id + ".jpg";
+                    var path = Path.Combine(Server.MapPath("~/App_Data/Caratulas"), filename);
+                    pelicula.Caratula.SaveAs(path);
+;
                 }
+
                 return RedirectToAction("Index");
             }
 
@@ -129,5 +134,7 @@ namespace EntrecineWebApp.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+
     }
 }
