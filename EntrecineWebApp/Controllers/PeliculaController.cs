@@ -63,7 +63,7 @@ namespace EntrecineWebApp.Controllers
                 if (pelicula.Caratula != null && pelicula.Caratula.ContentLength > 0)
                 {
                     var filename = "caratula_" + pelicula.Id + ".jpg";
-                    var path = Path.Combine(Server.MapPath("~/App_Data/Caratulas"), filename);
+                    var path = Path.Combine(Server.MapPath("~/Images/Caratulas"), filename);
                     pelicula.Caratula.SaveAs(path);
 ;
                 }

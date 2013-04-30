@@ -187,6 +187,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeliculaController.cs" />
+    <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -217,6 +218,7 @@
     <Compile Include="Models\Reserva.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReservaModel.cs" />
     <Compile Include="Models\Sala.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
     </Compile>
@@ -228,6 +230,7 @@
     </Compile>
     <Compile Include="Models\UsuarioAnnotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Shared\HtmlHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -366,6 +369,7 @@
     <Content Include="Views\Pelicula\Delete.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Pelicula\Lista.cshtml" />
+    <Content Include="Views\Reserva\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -374,7 +378,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Caratulas\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Images\Caratulas\" />
     <Folder Include="MovieImages\" />
   </ItemGroup>
   <PropertyGroup>

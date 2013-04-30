@@ -771,3 +771,29 @@ tr.pager td {
     height: 217px;
     box-shadow: 0px 0px 8px #fff;
 }
+
+.libre {
+    background-color:#dff0d8;
+}
+
+.ocupada {
+    background-color:#f2dede;
+}
+
+.butaca {
+    text-align:center;
+    padding:3px 10px;
+}
+
+.butaca input {
+    padding:0;
+}
+
+.editor-field {
+    margin-bottom:10px;
+}
+
+input[type="radio"] {
+    width:auto;
+    margin:0 30px;
+}
