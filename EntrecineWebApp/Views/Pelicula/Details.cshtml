@@ -67,13 +67,14 @@
     </div>
 
     <div id="sesiones">
-        @foreach(var sesionAct in Model.Sesion){
-         
-            @Html.LabelFor(sesion=>sesionAct.Sala)
-            <div class="display-field">
-                @Html.DisplayFor(sesion=>sesionAct.Sala.Id) 
-                @Html.ActionLink(sesionAct.Fecha.ToString("dd/MM HH:mm"), "Index", "Reserva", new {sesionAct.Id })
-            </div>                  
+        @foreach(var sesionAct in Model.Sesion){    
+                if(DateTime.Now<sesionAct.Fecha && sesionAct.Fecha< DateTime.Now.AddDays(7)){
+                    @Html.LabelFor(sesion=>sesionAct.Sala)
+                    <div class="display-field">
+                         @Html.DisplayFor(sesion=>sesionAct.Sala.Id) 
+                         @Html.ActionLink(sesionAct.Fecha.ToString("dd/MM HH:mm"), "Crear", "Reserva", new {id=sesionAct.Id },new {})
+                    </div>                  
+                }
         }
     </div>
 </div>
