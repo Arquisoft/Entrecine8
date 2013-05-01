@@ -17,14 +17,20 @@ namespace EntrecineWebApp.Controllers
         //
         // GET: /Reserva/
 
-        public ActionResult Index(int id = 4)
+        public ActionResult Index(int sesion = 4)
         {
 
-            ReservaModel model = new ReservaModel();;
+            ReservaModel model = new ReservaModel();
 
+            //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id");
+            return fillModelFor(model, sesion);
+        }
+
+        private ActionResult fillModelFor(ReservaModel model, int sesion)
+        {
             //Seguridad
             Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
-            if (user!= null && user.Rol >= 0)
+            if (user != null && user.Rol >= 0)
             {
                 if (user.Rol == 0)
                     model.PermiteEnEfectivo = false;
@@ -53,7 +59,6 @@ namespace EntrecineWebApp.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id");
             return View(model);
         }
 
@@ -65,8 +70,15 @@ namespace EntrecineWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!reserva.PermiteEnEfectivo && String.IsNullOrWhiteSpace(reserva.TarjetaCredito))
+                {
+                    ModelState.AddModelError("", "No se ha especificado un número de tarjeta de crédito.");
+
+                    return fillModelFor(reserva, reserva.Sesion.Id);
+                }
+
                 //db.ReservaConjunto.Add(reserva);
-                db.SaveChanges();
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
