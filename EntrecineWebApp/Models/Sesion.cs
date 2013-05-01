@@ -23,6 +23,7 @@ namespace EntrecineWebApp.Models
         public System.TimeSpan Fecha { get; set; }
         public int DescuentoId { get; set; }
         public int SalaId { get; set; }
+        public int PeliculaId { get; set; }
     
         public virtual Descuento Descuento { get; set; }
         public virtual Pelicula Pelicula { get; set; }

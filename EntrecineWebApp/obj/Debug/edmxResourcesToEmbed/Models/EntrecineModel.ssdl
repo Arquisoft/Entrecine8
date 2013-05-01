@@ -45,7 +45,7 @@
     <Property Name="Fila" Type="int" Nullable="false" />
     <Property Name="Columna" Type="int" Nullable="false" />
     <Property Name="SesionId" Type="int" Nullable="false" />
-    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+    <Property Name="UsuarioId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UsuarioConjunto">
     <Key>
@@ -77,7 +77,7 @@
     <Property Name="Fecha" Type="time" Nullable="false" />
     <Property Name="DescuentoId" Type="int" Nullable="false" />
     <Property Name="SalaId" Type="int" Nullable="false" />
-    <Property Name="Pelicula_Id" Type="int" Nullable="false" />
+    <Property Name="PeliculaId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DescuentoConjunto">
     <Key>
@@ -123,7 +123,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Sesion">
-        <PropertyRef Name="Pelicula_Id" />
+        <PropertyRef Name="PeliculaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -147,7 +147,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Reserva">
-        <PropertyRef Name="Usuario_Id" />
+        <PropertyRef Name="UsuarioId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

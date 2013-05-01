@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 04/29/2013 11:11:30
+-- Date Created: 05/01/2013 17:05:44
 -- Generated from EDMX file: C:\Users\Desarrollo\Documents\GitHub\Entrecine8\EntrecineWebApp\Models\EntrecineModel.edmx
 -- --------------------------------------------------
 
@@ -29,6 +29,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ReservaUsuario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ReservaConjunto] DROP CONSTRAINT [FK_ReservaUsuario];
 GO
+IF OBJECT_ID(N'[dbo].[FK_SalaSesion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SesionConjunto] DROP CONSTRAINT [FK_SalaSesion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PeliculaUsuario_Pelicula]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PeliculaUsuario] DROP CONSTRAINT [FK_PeliculaUsuario_Pelicula];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PeliculaUsuario_Usuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PeliculaUsuario] DROP CONSTRAINT [FK_PeliculaUsuario_Usuario];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -49,6 +58,12 @@ GO
 IF OBJECT_ID(N'[dbo].[DescuentoConjunto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DescuentoConjunto];
 GO
+IF OBJECT_ID(N'[dbo].[SalaConjunto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SalaConjunto];
+GO
+IF OBJECT_ID(N'[dbo].[PeliculaUsuario]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PeliculaUsuario];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -60,7 +75,7 @@ CREATE TABLE [dbo].[ReservaConjunto] (
     [Fila] int  NOT NULL,
     [Columna] int  NOT NULL,
     [SesionId] int  NOT NULL,
-    [Usuario_Id] int  NOT NULL
+    [UsuarioId] int  NOT NULL
 );
 GO
 
@@ -92,7 +107,7 @@ CREATE TABLE [dbo].[SesionConjunto] (
     [Fecha] time  NOT NULL,
     [DescuentoId] int  NOT NULL,
     [SalaId] int  NOT NULL,
-    [Pelicula_Id] int  NOT NULL
+    [PeliculaId] int  NOT NULL
 );
 GO
 
@@ -183,10 +198,10 @@ ON [dbo].[SesionConjunto]
     ([DescuentoId]);
 GO
 
--- Creating foreign key on [Pelicula_Id] in table 'SesionConjunto'
+-- Creating foreign key on [PeliculaId] in table 'SesionConjunto'
 ALTER TABLE [dbo].[SesionConjunto]
 ADD CONSTRAINT [FK_SesionPelicula]
-    FOREIGN KEY ([Pelicula_Id])
+    FOREIGN KEY ([PeliculaId])
     REFERENCES [dbo].[PeliculaConjunto]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -194,7 +209,7 @@ ADD CONSTRAINT [FK_SesionPelicula]
 -- Creating non-clustered index for FOREIGN KEY 'FK_SesionPelicula'
 CREATE INDEX [IX_FK_SesionPelicula]
 ON [dbo].[SesionConjunto]
-    ([Pelicula_Id]);
+    ([PeliculaId]);
 GO
 
 -- Creating foreign key on [SesionId] in table 'ReservaConjunto'
@@ -211,10 +226,10 @@ ON [dbo].[ReservaConjunto]
     ([SesionId]);
 GO
 
--- Creating foreign key on [Usuario_Id] in table 'ReservaConjunto'
+-- Creating foreign key on [UsuarioId] in table 'ReservaConjunto'
 ALTER TABLE [dbo].[ReservaConjunto]
 ADD CONSTRAINT [FK_ReservaUsuario]
-    FOREIGN KEY ([Usuario_Id])
+    FOREIGN KEY ([UsuarioId])
     REFERENCES [dbo].[UsuarioConjunto]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -222,7 +237,7 @@ ADD CONSTRAINT [FK_ReservaUsuario]
 -- Creating non-clustered index for FOREIGN KEY 'FK_ReservaUsuario'
 CREATE INDEX [IX_FK_ReservaUsuario]
 ON [dbo].[ReservaConjunto]
-    ([Usuario_Id]);
+    ([UsuarioId]);
 GO
 
 -- Creating foreign key on [SalaId] in table 'SesionConjunto'

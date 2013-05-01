@@ -67,7 +67,7 @@ namespace EntrecineWebApp.Controllers
                     pelicula.Caratula.SaveAs(path);
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             return View(pelicula);

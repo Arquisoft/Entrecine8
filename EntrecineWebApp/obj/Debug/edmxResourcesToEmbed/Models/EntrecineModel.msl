@@ -8,6 +8,7 @@
           <ScalarProperty Name="Fila" ColumnName="Fila" />
           <ScalarProperty Name="Columna" ColumnName="Columna" />
           <ScalarProperty Name="SesionId" ColumnName="SesionId" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -42,6 +43,7 @@
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="DescuentoId" ColumnName="DescuentoId" />
           <ScalarProperty Name="SalaId" ColumnName="SalaId" />
+          <ScalarProperty Name="PeliculaId" ColumnName="PeliculaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -63,22 +65,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="SesionPelicula" TypeName="EntrecineModel.SesionPelicula" StoreEntitySet="SesionConjunto">
-      <EndProperty Name="Pelicula">
-        <ScalarProperty Name="Id" ColumnName="Pelicula_Id" />
-      </EndProperty>
-      <EndProperty Name="Sesion">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="ReservaUsuario" TypeName="EntrecineModel.ReservaUsuario" StoreEntitySet="ReservaConjunto">
-      <EndProperty Name="Usuario">
-        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
-      </EndProperty>
-      <EndProperty Name="Reserva">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="PeliculaUsuario" TypeName="EntrecineModel.PeliculaUsuario" StoreEntitySet="PeliculaUsuario">
       <EndProperty Name="Pelicula">
         <ScalarProperty Name="Id" ColumnName="Pelicula_Id" />

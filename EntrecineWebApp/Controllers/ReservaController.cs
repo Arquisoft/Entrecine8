@@ -17,7 +17,7 @@ namespace EntrecineWebApp.Controllers
         //
         // GET: /Reserva/
 
-        public ActionResult Index(int sesion = 4)
+        public ActionResult Index(int sesion = 1)
         {
 
             ReservaModel model = new ReservaModel();
@@ -38,7 +38,7 @@ namespace EntrecineWebApp.Controllers
                     model.PermiteEnEfectivo = true;
 
 
-                model.Sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(4));
+                model.Sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(sesion));
 
                 // Elemento temporal para construir la tabla de checkboxes
                 model.Ocupacion = new Butaca[model.Sesion.Sala.Filas * model.Sesion.Sala.Columnas];
@@ -67,12 +67,12 @@ namespace EntrecineWebApp.Controllers
         // POST: /Reserva/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(ReservaModel reserva, string[] butacas)
+        public ActionResult Index(ReservaModel reservamodel, string[] butacas)
         {
             if (ModelState.IsValid)
             {
                 bool error = false;
-                if (!reserva.PermiteEnEfectivo && String.IsNullOrWhiteSpace(reserva.TarjetaCredito))
+                if (!reservamodel.PermiteEnEfectivo && String.IsNullOrWhiteSpace(reservamodel.TarjetaCredito))
                 {
                     ModelState.AddModelError("", "No se ha especificado un número de tarjeta de crédito.");
                     error = true;
@@ -84,7 +84,23 @@ namespace EntrecineWebApp.Controllers
                 }
 
                 if (error)
-                    return fillModelFor(reserva, reserva.Sesion.Id);
+                    return fillModelFor(reservamodel, reservamodel.Sesion.Id);
+
+                // Aquí se debería validar la tarjeta de crédito
+
+                for (int i = 0; i < butacas.Length;i++ )
+                {
+                    String[] butaca = butacas[i].Split(':');
+
+                    // Buscamos el usuario
+                    Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+
+                    //Buscamos la sesion completa
+                    Sesion sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(reservamodel.Sesion.Id));
+
+                    //Añadimos el objeto al mapeador
+                    Reserva reserva = new Reserva() {Fila=Int32.Parse(butaca[0]), Columna=Int32.Parse(butaca[1]), SesionId=reservamodel.Sesion.Id, Usuario=user,};
+                }
 
 
                 //db.ReservaConjunto.Add(reserva);
@@ -93,7 +109,7 @@ namespace EntrecineWebApp.Controllers
             }
 
             //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id", reserva.SesionId);
-            return View(reserva);
+            return View(reservamodel);
         }
 
 

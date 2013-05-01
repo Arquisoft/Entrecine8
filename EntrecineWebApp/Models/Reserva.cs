@@ -18,6 +18,7 @@ namespace EntrecineWebApp.Models
         public int Fila { get; set; }
         public int Columna { get; set; }
         public int SesionId { get; set; }
+        public int UsuarioId { get; set; }
     
         public virtual Sesion Sesion { get; set; }
         public virtual Usuario Usuario { get; set; }
