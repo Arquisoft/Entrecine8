@@ -10,7 +10,7 @@
             </hgroup>
             <div id="movieFeatured">
                @foreach (var item in Model) {
-                <div class="movie25"><img src="@Url.Content("~/Images/Caratulas/caratula_"+item.Id+".jpg")"/></div>
+                <div class="movie25">@Html.ActionLink("CLIKAME", "Details", "Pelicula",new{id=item.Id})<img src="@Url.Content("~/Images/Caratulas/caratula_"+item.Id+".jpg")"/></div>
                    
                }
             </div>
