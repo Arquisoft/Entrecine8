@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Listado de Peliculas";
 }
 
 <!--Prueba CSS incrustado
@@ -37,6 +37,10 @@
     -->
 
 <style>
+    .listadoDePelis {
+    text-align:center;
+
+    }
     h2 {
         text-align:center;
         font-size:1.4em;
@@ -49,10 +53,11 @@
         font-family:Verdana,Arial;
     }
     .contenedorPeli {
+        margin:20px;
         border:dashed;
         float:left;
-        max-height:300px;
-        max-width:200px;
+        height:320px;
+        width:210px;
     }
 
     .pelicula {
@@ -60,7 +65,8 @@
     }
 
     .portada {
-        text-align:inherit;
+        text-align:center;
+
     }
 </style>
 <h2>CARTELERA</h2>
@@ -75,7 +81,7 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </div>
             <div class="portada">
-                     @Html.ActionLink(" ", "Details", "Pelicula",new{id=item.Id}, new {style = "background: url('" + Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>item.Id)+".jpg") + "') no-repeat center right; display:block; height:300px; width:200px;" })
+                     @Html.ActionLink(" ", "Details", "Pelicula",new{id=item.Id}, new {style = "background: url('" + Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>item.Id)+".jpg") + "') no-repeat center; display:block; height:300px; width:200px;" })
             </div>
             
         </div>

@@ -1,60 +1,85 @@
-﻿@model EntrecineWebApp.Models.Pelicula
+﻿@using EntrecineWebApp.Views.Shared
+@using EntrecineWebApp.Models
+@model EntrecineWebApp.Models.Pelicula
 
 @{
     ViewBag.Title = "Detalles de la película";
+    var ruta = "../../Images/Caratulas/caratula_" + Model.Id + ".jpg";
 }
 
-<h2>Details</h2>
+<style>
+    h2 {
+        padding-left:10px;
+    }
+    #caratula {
+        float:left;
+        border-right: groove;
+        padding:5px;
+        height:215px;
+        width:150px;
+    }
+    .informacion {
+        float: left;
+        padding:5px;
+    }
+    .display-field {
+        padding-left:20px;
+    }
+    #back {
+        clear:both;
+        text-align: right;
+    }
 
-<fieldset>
-    <legend>Pelicula</legend>
+</style>
+<h2>Información detallada</h2>
+<div id="caratula">
+    <img src="@ruta" alt="portada" width="150" height="215"/>
+</div>
+
+<div class="informacion">
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
+         @Html.LabelFor(model => model.Nombre)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Nombre)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Descripcion)
+         @Html.LabelFor(model => model.Descripcion)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Descripcion)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Precio)
+         @Html.LabelFor(model => model.Precio)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Precio)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Duracion)
+         @Html.LabelFor(model => model.Duracion)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Duracion)
     </div>
-</fieldset>
 
-<div class="datosPeli">
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
+    <div id="sesiones">
+        @foreach(var sesionAct in Model.Sesion){
+            @Html.LabelFor(sesion=>sesionAct.Id)
+            @Html.DisplayFor(sesion=>sesionAct.Id)
+            @Html.ActionLink("","Index","Reserva",new{sesionAct.Id})
+            sesionAct.Fecha..ToString("dd/MM HH:mm");
+            
+        }
     </div>
-
-    @Html.LabelFor(model =>model.Descripcion)
-    <pre class="descripcion">
-        @Html.DisplayFor(model => model.Descripcion)
-    </pre>
-
-    @Html.LabelFor(model =>model.Precio)
-    @Html.DisplayFor(model => model.Precio)
-
-    @Html.LabelFor(model =>model.Duracion)
-    @Html.DisplayFor(model => model.Duracion)
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+
+
+
+
+<p id="back">
     @Html.ActionLink("Back to List", "Index")
 </p>
