@@ -40,6 +40,7 @@ namespace EntrecineWebApp.Controllers
 
                 model.Sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(4));
 
+                // Elemento temporal para construir la tabla de checkboxes
                 model.Ocupacion = new Butaca[model.Sesion.Sala.Filas * model.Sesion.Sala.Columnas];
 
                 Random rdn = new Random();
@@ -66,20 +67,29 @@ namespace EntrecineWebApp.Controllers
         // POST: /Reserva/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(ReservaModel reserva)
+        public ActionResult Index(ReservaModel reserva, string[] butacas)
         {
             if (ModelState.IsValid)
             {
+                bool error = false;
                 if (!reserva.PermiteEnEfectivo && String.IsNullOrWhiteSpace(reserva.TarjetaCredito))
                 {
                     ModelState.AddModelError("", "No se ha especificado un número de tarjeta de crédito.");
-
-                    return fillModelFor(reserva, reserva.Sesion.Id);
+                    error = true;
                 }
+                if (butacas == null || butacas.Length == 0)
+                {
+                    ModelState.AddModelError("", "No se han seleccionado butacas.");
+                    error = true;
+                }
+
+                if (error)
+                    return fillModelFor(reserva, reserva.Sesion.Id);
+
 
                 //db.ReservaConjunto.Add(reserva);
                 //db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id", reserva.SesionId);

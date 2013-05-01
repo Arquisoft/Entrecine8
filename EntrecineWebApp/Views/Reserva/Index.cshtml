@@ -38,8 +38,10 @@
                         <td class="butaca @Html.Encode(Model.GetOcupacionClass(i))">
                             @if (!Model.Ocupacion[i].Ocupada)
                             {                        
-                                @Html.EditorFor(model => model.Ocupacion[i].Ocupada)
-
+                                <label class="checkbox">
+                                    <input type="checkbox" name="butacas" value="@Html.Encode(Model.Ocupacion[i].Fila+":"+Model.Ocupacion[i].Columna)"> 
+                                </label>
+                                
                             }
                         </td>
                             i++;

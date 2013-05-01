@@ -32,32 +32,6 @@ namespace EntrecineWebApp.Models
 
         public Sesion Sesion { get; set; }
 
-        /*
-        public MvcHtmlString generarTablaOcupacion(HtmlHelper htmlHelper)
-        {
-            var sb = new StringBuilder();
-
-            if (ocupacion != null)
-            {
-                sb.Append("<table>");
-
-                for (int i = 0; i < ocupacion.GetLength(0); i++)
-                {
-                    sb.Append("<tr>");
-
-                    for (int j = 0; j < ocupacion.GetLength(1); j++)
-                    {
-                        var checkbox = htmlHelper.(item.Text, new { id = item.Value }).ToHtmlString();
-
-                        sb.Append("<td class="+HttpUtility.HtmlEncode(GetOcupacionClass(i,j)+">" + checkbox + "</td>");
-                    }
-                    sb.Append("</tr>");
-                }
-            }
-            sb.Append("</table>");
-            return MvcHtmlString.Create(sb.ToString());
-        }*/
-
         public string GetOcupacionClass(int i){
             if (Ocupacion[i].Ocupada)
                 return "ocupada";
