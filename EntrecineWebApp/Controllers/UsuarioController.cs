@@ -79,7 +79,8 @@ namespace EntrecineWebApp.Controllers
             {
                 db.UsuarioConjunto.Add(usuario);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                FormsAuthentication.SetAuthCookie(usuario.Login,true);
+                return RedirectToAction("Index","Home");
             }
 
             return View(usuario);

@@ -36,6 +36,7 @@ namespace EntrecineWebApp.Models
 
         [Required]
         [DataType(DataType.Password)]
+        [StringLength(20,MinimumLength=6, ErrorMessage="La contraseña debe estar entre 6 y 20 caracteres")]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 

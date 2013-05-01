@@ -32,11 +32,13 @@ namespace EntrecineWebApp.Models
 
         [Required]
         [DataType(DataType.Currency)]
+        [Range(0.01, float.MaxValue, ErrorMessage="El precio debe ser positivo")]
         [Display(Name = "Precio base")]
         public double Precio { get; set; }
         
         [Required]
         [DataType(DataType.Duration)]
+        [Range(1,int.MaxValue, ErrorMessage = "La duración no puede ser menor de 0")]
         [Display(Name = "Duración (minutos)")]
         public int Duracion { get; set; }
 

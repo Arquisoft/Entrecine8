@@ -16,12 +16,12 @@ namespace EntrecineWebApp.Controllers
 
         //
         // GET: /Pelicula/
-
+/*
         public ActionResult Index()
         {
             return View(db.PeliculaConjunto.ToList());
         }
-
+*/
         public ActionResult Lista()
         {
             return View(db.PeliculaConjunto.ToList());
@@ -65,7 +65,6 @@ namespace EntrecineWebApp.Controllers
                     var filename = "caratula_" + pelicula.Id + ".jpg";
                     var path = Path.Combine(Server.MapPath("~/Images/Caratulas"), filename);
                     pelicula.Caratula.SaveAs(path);
-;
                 }
 
                 return RedirectToAction("Index");
