@@ -77,6 +77,11 @@ namespace EntrecineWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(db.UsuarioConjunto.FirstOrDefault(u => u.Login == usuario.Login) != null){
+                    ModelState.AddModelError("", "Este usuario ya está registrado");
+                    return View(usuario);
+                }
+
                 db.UsuarioConjunto.Add(usuario);
                 db.SaveChanges();
                 FormsAuthentication.SetAuthCookie(usuario.Login,true);
