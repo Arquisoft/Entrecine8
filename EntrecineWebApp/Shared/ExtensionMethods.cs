@@ -10,7 +10,7 @@ using System.Web.Mvc.Html;
 
 namespace EntrecineWebApp.Views.Shared
 {
-    public static class HtmlHelpers
+    public static class ExtensionMethods
     {
         public static MvcHtmlString RadioButtonForEnum<TModel, TProperty>(
             this HtmlHelper<TModel> htmlHelper,

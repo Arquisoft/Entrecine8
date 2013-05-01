@@ -66,7 +66,16 @@ namespace EntrecineWebApp.Controllers
 
         public ActionResult Registro()
         {
-            return View();
+            //Seguridad
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         //
