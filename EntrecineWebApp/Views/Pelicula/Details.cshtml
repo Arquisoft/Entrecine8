@@ -68,11 +68,12 @@
 
     <div id="sesiones">
         @foreach(var sesionAct in Model.Sesion){
-            @Html.LabelFor(sesion=>sesionAct.Id)
-            @Html.DisplayFor(sesion=>sesionAct.Id)
-            @Html.ActionLink("","Index","Reserva",new{sesionAct.Id})
-            sesionAct.Fecha.ToString("dd/MM HH:mm");
-            
+         
+            @Html.LabelFor(sesion=>sesionAct.Sala)
+            <div class="display-field">
+                @Html.DisplayFor(sesion=>sesionAct.Sala.Id) 
+                @Html.ActionLink(sesionAct.Fecha.ToString("dd/MM HH:mm"), "Index", "Reserva", new {sesionAct.Id })
+            </div>                  
         }
     </div>
 </div>
