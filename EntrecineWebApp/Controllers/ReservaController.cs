@@ -17,13 +17,13 @@ namespace EntrecineWebApp.Controllers
         //
         // GET: /Reserva/
 
-        public ActionResult Index(int sesion = 1)
+        public ActionResult Crear(int id = 0)
         {
 
             ReservaModel model = new ReservaModel();
 
             //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id");
-            return fillModelFor(model, sesion);
+            return fillModelFor(model, id);
         }
 
         private ActionResult fillModelFor(ReservaModel model, int sesion)
@@ -67,7 +67,7 @@ namespace EntrecineWebApp.Controllers
         // POST: /Reserva/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(ReservaModel reservamodel, string[] butacas)
+        public ActionResult Crear(ReservaModel reservamodel, string[] butacas)
         {
             if (ModelState.IsValid)
             {
