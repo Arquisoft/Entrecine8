@@ -1,17 +1,19 @@
-﻿@{
+﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
+@{
     ViewBag.Title = "Inicio";
 }
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h2>Ahora mismo en Entrecine..</h2>
+                <h2>Ahora mismo en Entrecine...</h2>
             </hgroup>
             <div id="movieFeatured">
-            <div class="movie25"><img src="~/Images/cartelera_1.jpg" /></div>
-            <div class="movie25"><img src="~/Images/cartelera_2.jpg" /></div>
-            <div class="movie25"><img src="~/Images/cartelera_3.jpg" /></div>
-            <div class="movie25"><img src="~/Images/cartelera_4.jpg" /></div></div>
+               @foreach (var item in Model) {
+                <div class="movie25"><img src="@Url.Content("~/Images/Caratulas/caratula_"+item.Id+".jpg")"/></div>
+                   
+               }
+            </div>
         </div>
     </section>
 }
@@ -19,11 +21,11 @@
 <ol class="round">
     <li class="one">
         <h5>Date de alta como socio</h5>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet eros in nibh iaculis ultrices quis eget enim. Nulla laoreet, lacus quis ultrices malesuada, erat libero condimentum ipsum, ac interdum neque orci in libero. Phasellus dictum nulla sed enim vestibulum aliquet. Vivamus mi nunc, dapibus ut lobortis vitae, ultricies sed nulla. Aenean laoreet, urna eget bibendum varius, urna velit porttitor augue, condimentum aliquam dolor diam ac erat. Vivamus imperdiet iaculis suscipit. Aliquam mattis consequat augue nec scelerisque. Nulla sed nisi turpis, non consequat libero. Nulla sit amet justo eget mi condimentum interdum. Quisque euismod facilisis nisl, ac egestas nunc lobortis in.
+        Date de alta como socio de entrecine ahora mismo para empezar a disfrutar de las mejores peliculas de estreno!!
     </li>
 
     <li class="two">
         <h5>Reserva tu butaca</h5>
-        Quisque sem urna, vulputate iaculis pulvinar sit amet, rhoncus id sapien. Vivamus varius rhoncus auctor. Praesent consequat, metus et pharetra elementum, metus metus bibendum libero, id egestas felis purus eu velit. Duis eleifend arcu sed tortor sodales commodo. Quisque aliquet consectetur nisl quis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur neque tortor, malesuada sed mattis condimentum, venenatis in nibh. Nunc tempus commodo fringilla. Sed ante purus, aliquet non tempus quis, dignissim id augue. Suspendisse potenti. Duis orci magna, dapibus ut pretium nec, auctor ut urna.
+        Ingresa como socio del entrecine para reservar tu butaca online y venir a vernos solo para la pelicula!!
     </li>
 </ol>
