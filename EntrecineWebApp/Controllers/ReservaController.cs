@@ -19,23 +19,39 @@ namespace EntrecineWebApp.Controllers
 
         public ActionResult Index(int id = 4)
         {
-            ReservaModel model = new ReservaModel();
 
-            model.Sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(4));
+            ReservaModel model = new ReservaModel();;
 
-            model.Ocupacion = new Butaca[model.Sesion.Sala.Filas * model.Sesion.Sala.Columnas];
+            //Seguridad
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user!= null && user.Rol >= 0)
+            {
+                if (user.Rol == 0)
+                    model.PermiteEnEfectivo = false;
+                else
+                    model.PermiteEnEfectivo = true;
 
-            Random rdn = new Random();
-            int k = 0;
-            for (int i = 0; i < model.Sesion.Sala.Filas; i++)
-                for (int j = 0; j < model.Sesion.Sala.Columnas; j++)
-                {
-                    model.Ocupacion[k] = new Butaca();
-                    model.Ocupacion[k].Fila = i;
-                    model.Ocupacion[k].Columna = j;
-                    model.Ocupacion[k].Ocupada = rdn.Next(4).Equals(1);
-                    k++;
-                }
+
+                model.Sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(4));
+
+                model.Ocupacion = new Butaca[model.Sesion.Sala.Filas * model.Sesion.Sala.Columnas];
+
+                Random rdn = new Random();
+                int k = 0;
+                for (int i = 0; i < model.Sesion.Sala.Filas; i++)
+                    for (int j = 0; j < model.Sesion.Sala.Columnas; j++)
+                    {
+                        model.Ocupacion[k] = new Butaca();
+                        model.Ocupacion[k].Fila = i;
+                        model.Ocupacion[k].Columna = j;
+                        model.Ocupacion[k].Ocupada = rdn.Next(4).Equals(1);
+                        k++;
+                    }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id");
             return View(model);

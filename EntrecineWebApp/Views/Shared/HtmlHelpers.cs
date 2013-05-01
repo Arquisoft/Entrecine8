@@ -14,7 +14,8 @@ namespace EntrecineWebApp.Views.Shared
     {
         public static MvcHtmlString RadioButtonForEnum<TModel, TProperty>(
             this HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression
+            Expression<Func<TModel, TProperty>> expression,
+            bool mostrarTodo
         )
         {
             var metaData = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
@@ -47,6 +48,8 @@ namespace EntrecineWebApp.Views.Shared
                     HttpUtility.HtmlEncode(description),
                     radio
                 );
+
+                if (!mostrarTodo) break;
             }
             return MvcHtmlString.Create(sb.ToString());
         }

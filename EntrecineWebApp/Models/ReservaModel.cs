@@ -10,10 +10,11 @@ namespace EntrecineWebApp.Models
 {
     public class ReservaModel
     {
-        public enum FormasDePago {
-            [Display(Name="Tarjeta de Credito")]
+        public enum FormasDePago
+        {
+            [Display(Name = "Tarjeta de Credito")]
             TarjetaDeCredito,
-            [Display(Name="En Efectivo")]
+            [Display(Name = "En Efectivo")]
             EnEfectivo
         }
 
@@ -23,6 +24,8 @@ namespace EntrecineWebApp.Models
 
         [Display(Name = "Seleccione una forma de pago")]
         public FormasDePago FormaDePago { get; set; }
+
+        public bool PermiteEnEfectivo { get; set; }
 
         [Display(Name = "Seleccione una o más butacas")]
         public Butaca[] Ocupacion { get; set; }
@@ -63,7 +66,7 @@ namespace EntrecineWebApp.Models
         }
 
     }
-    
+        
     public class Butaca{
         public bool Ocupada {get; set;}
         public int Fila {get; set;}

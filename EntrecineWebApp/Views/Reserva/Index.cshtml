@@ -3,74 +3,75 @@
 
 @{
     ViewBag.Title = "Comprar entradas";
-    var ImagePath = "../Images/Caratulas/caratula_"+Model.Sesion.Pelicula.Id+".jpg";
+    var ImagePath = "../Images/Caratulas/caratula_" + Model.Sesion.Pelicula.Id + ".jpg";
 }
 
-<h2>Comprar entradas</h2>
-<aside>
-<h3>Sesión</h3>
-<img src="@Html.Encode(ImagePath)" />
-<p>Película: <b>@Html.Encode(Model.Sesion.Pelicula.Nombre)</b><br />
-Precio por entrada : <b>@Html.Encode(Model.Sesion.Pelicula.Precio)€</b><br />
-Hora de inicio : <b>@Html.Encode(Model.Sesion.Fecha)</b><br />
-Duración : <b>@Html.Encode(Model.Sesion.Pelicula.Duracion) minutos</b></p>
-</aside>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <h2>Comprar entradas</h2>
+    <aside>
+    <h3>Sesión</h3>
+    <img src="@Html.Encode(ImagePath)" />
+    <p>Película: <b>@Html.Encode(Model.Sesion.Pelicula.Nombre)</b><br />
+    Precio por entrada : <b>@Html.Encode(Model.Sesion.Pelicula.Precio)€</b><br />
+    Hora de inicio : <b>@Html.Encode(Model.Sesion.Fecha)</b><br />
+    Duración : <b>@Html.Encode(Model.Sesion.Pelicula.Duracion) minutos</b></p>
+    </aside>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
             
-    <fieldset>
-        <legend></legend>
-        <h3>Butacas disponibles</h3>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Ocupacion)
-        </div>
-        <div class="editor-field">
-        <table>
-            
-@{int i = 0;}
-@for (int j=0; j < Model.Sesion.Sala.Filas; j++ )
-{
-            <tr>
-                @for (int k=0; k < Model.Sesion.Sala.Columnas; k++)
-                {
-                    <td class="butaca @Html.Encode(Model.GetOcupacionClass(i))">
-                        @if (!Model.Ocupacion[i].Ocupada)
-                        {                        
-                            @Html.EditorFor(model => model.Ocupacion[i].Ocupada)
-
-                        }
-                    </td>
-                    i++;
-                }
-
-            </tr>
-}
-        </table>
+        <fieldset>
+            <legend></legend>
+            <h3>Butacas disponibles</h3>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Ocupacion)
             </div>
-        <h3>Forma de Pago</h3>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FormaDePago)
-        </div>
-        <div class="editor-field">
-            @Html.RadioButtonForEnum(model => model.FormaDePago)
-        </div>
+            <div class="editor-field">
+            <table>
+            
+    @{int i = 0;}
+    @for (int j = 0; j < Model.Sesion.Sala.Filas; j++)
+    {
+                <tr>
+                    @for (int k = 0; k < Model.Sesion.Sala.Columnas; k++)
+                    {
+                        <td class="butaca @Html.Encode(Model.GetOcupacionClass(i))">
+                            @if (!Model.Ocupacion[i].Ocupada)
+                            {                        
+                                @Html.EditorFor(model => model.Ocupacion[i].Ocupada)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TarjetaCredito)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.TarjetaCredito)
-            @Html.ValidationMessageFor(model => model.TarjetaCredito)
-        </div>
+                            }
+                        </td>
+                            i++;
+                    }
 
-        <p>
-            <input type="submit" value="Realizar Reserva" />
-        </p>
+                </tr>
+    }
+            </table>
+                </div>
+            <h3>Forma de Pago</h3>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FormaDePago)
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonForEnum(model => model.FormaDePago, Model.PermiteEnEfectivo)
+            </div>
 
-    </fieldset>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TarjetaCredito)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TarjetaCredito)
+                @Html.ValidationMessageFor(model => model.TarjetaCredito)
+            </div>
+
+            <p>
+                <input type="submit" value="Realizar Reserva" />
+            </p>
+
+        </fieldset>
     
-}
+    }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
