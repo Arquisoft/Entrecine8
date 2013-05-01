@@ -1,7 +1,7 @@
 ﻿@model EntrecineWebApp.Models.Pelicula
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles de la película";
 }
 
 <h2>Details</h2>
@@ -37,6 +37,23 @@
         @Html.DisplayFor(model => model.Duracion)
     </div>
 </fieldset>
+
+<div class="datosPeli">
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+
+    @Html.LabelFor(model =>model.Descripcion)
+    <pre class="descripcion">
+        @Html.DisplayFor(model => model.Descripcion)
+    </pre>
+
+    @Html.LabelFor(model =>model.Precio)
+    @Html.DisplayFor(model => model.Precio)
+
+    @Html.LabelFor(model =>model.Duracion)
+    @Html.DisplayFor(model => model.Duracion)
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

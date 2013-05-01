@@ -14,6 +14,7 @@ namespace EntrecineWebApp.Models
         [Required]
         [Display(Name = "Portada de la película")]
         public HttpPostedFileBase Caratula { get; set; }
+
     }
 
     public class PeliculaAnnotation
