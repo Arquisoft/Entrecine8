@@ -74,7 +74,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Fecha" Type="time" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
     <Property Name="DescuentoId" Type="int" Nullable="false" />
     <Property Name="SalaId" Type="int" Nullable="false" />
     <Property Name="PeliculaId" Type="int" Nullable="false" />

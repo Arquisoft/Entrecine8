@@ -79,7 +79,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Fecha" Type="time" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
     <Property Name="DescuentoId" Type="int" Nullable="false" />
     <Property Name="SalaId" Type="int" Nullable="false" />
     <Property Name="PeliculaId" Type="int" Nullable="false" />
@@ -271,7 +271,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Time" Name="Fecha" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
           <NavigationProperty Name="Descuento" Relationship="EntrecineModel.DescuentoSesion" FromRole="Sesion" ToRole="Descuento" />
           <Property Name="DescuentoId" Nullable="false" Type="Int32" />
           <NavigationProperty Name="Pelicula" Relationship="EntrecineModel.SesionPelicula" FromRole="Sesion" ToRole="Pelicula" />

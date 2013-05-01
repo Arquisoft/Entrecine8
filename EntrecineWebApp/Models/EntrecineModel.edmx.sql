@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/01/2013 17:05:44
+-- Date Created: 05/01/2013 21:11:32
 -- Generated from EDMX file: C:\Users\Desarrollo\Documents\GitHub\Entrecine8\EntrecineWebApp\Models\EntrecineModel.edmx
 -- --------------------------------------------------
 
@@ -104,7 +104,7 @@ GO
 -- Creating table 'SesionConjunto'
 CREATE TABLE [dbo].[SesionConjunto] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Fecha] time  NOT NULL,
+    [Fecha] datetime  NOT NULL,
     [DescuentoId] int  NOT NULL,
     [SalaId] int  NOT NULL,
     [PeliculaId] int  NOT NULL
