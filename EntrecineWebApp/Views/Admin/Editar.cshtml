@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
+
+@{
+    ViewBag.Title = "Edición de películas";
+}
+
+<h2>Editar Peliculas</h2>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duracion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duracion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", "Pelicula", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Detalles", "Detalles", "Pelicula", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Borrar", "Borrar", "Pelicula", new { id = item.Id }, new { })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

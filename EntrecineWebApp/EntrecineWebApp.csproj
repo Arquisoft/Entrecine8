@@ -185,10 +185,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeliculaController.cs" />
     <Compile Include="Controllers\RecomendacionesController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
+    <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -361,6 +363,15 @@
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Reserva\Crear.cshtml" />
     <Content Include="Views\Recomendaciones\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Editar.cshtml" />
+    <Content Include="Views\Admin\Borrar.cshtml" />
+    <Content Include="Views\Admin\EditarSesiones.cshtml" />
+    <Content Include="Views\Sesion\Index.cshtml" />
+    <Content Include="Views\Sesion\Details.cshtml" />
+    <Content Include="Views\Sesion\Create.cshtml" />
+    <Content Include="Views\Sesion\Edit.cshtml" />
+    <Content Include="Views\Sesion\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

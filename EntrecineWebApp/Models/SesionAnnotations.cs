@@ -23,6 +23,15 @@ namespace EntrecineWebApp.Models
 
     public class SesionAnnotations
     {
+        public int Id { get; set; }
+        [Required(ErrorMessage="Fecha imprescindible")]
+        [DataType(DataType.DateTime)]
+        public DateTime Fecha { get; set; }
 
+        public int DescuentoId { get; set; }
+        [Required]
+        public int SalaId { get; set; }
+        [Required]
+        public int PeliculaId { get; set; }
     }
 }

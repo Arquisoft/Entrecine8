@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edición para la pelicula: @Html.Encode(Model.Nombre)</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

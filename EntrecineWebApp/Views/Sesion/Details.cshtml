@@ -1,0 +1,50 @@
+﻿@model EntrecineWebApp.Models.Sesion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Sesion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrecioCalculado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioCalculado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descuento.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descuento.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sala.Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sala.Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Pelicula.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pelicula.Nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

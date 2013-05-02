@@ -1,0 +1,62 @@
+﻿@model EntrecineWebApp.Models.Sesion
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Sesion</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fecha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fecha)
+            @Html.ValidationMessageFor(model => model.Fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescuentoId, "Descuento")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DescuentoId", String.Empty)
+            @Html.ValidationMessageFor(model => model.DescuentoId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SalaId, "Sala")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SalaId", String.Empty)
+            @Html.ValidationMessageFor(model => model.SalaId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PeliculaId, "Pelicula")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PeliculaId", String.Empty)
+            @Html.ValidationMessageFor(model => model.PeliculaId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
