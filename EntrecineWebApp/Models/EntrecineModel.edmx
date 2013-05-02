@@ -51,6 +51,7 @@
     <Property Name="Columna" Type="int" Nullable="false" />
     <Property Name="SesionId" Type="int" Nullable="false" />
     <Property Name="UsuarioId" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="UsuarioConjunto">
     <Key>
@@ -239,6 +240,7 @@
           <Property Name="SesionId" Nullable="false" Type="Int32" />
           <NavigationProperty Name="Usuario" Relationship="EntrecineModel.ReservaUsuario" FromRole="Reserva" ToRole="Usuario" />
           <Property Type="Int32" Name="UsuarioId" Nullable="false" />
+          <Property Type="Double" Name="Precio" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -376,6 +378,7 @@
           <ScalarProperty Name="Columna" ColumnName="Columna" />
           <ScalarProperty Name="SesionId" ColumnName="SesionId" />
           <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,0 +1,34 @@
+﻿@using EntrecineWebApp.Views.Shared
+@model EntrecineWebApp.Models.ReciboModel
+
+@{
+    ViewBag.Title = "Reserva realizada";
+}
+
+    <h2>Reserva realizada</h2>
+        
+        
+    @for(int i=0; i< Model.reservas.Count; i++)
+    {
+        <h3>Venta #@Html.Encode(Model.reservas[i].Id)</h3>
+        <div class="recibo">@Html.QRCode(10000000+Model.reservas[i].Id+"",120,2)</div>
+        <div class="recibo">
+                Película: <b>@Html.Encode(Model.reservas[i].Sesion.Pelicula.Nombre)</b><br />
+                 Hora de inicio : <b>@Html.Encode(Model.reservas[i].Sesion.Fecha)</b><br />
+                 Duración : <b>@Html.Encode(Model.reservas[i].Sesion.Pelicula.Duracion) minutos</b>
+                <br />
+                <br />
+                 Sala : <b>@Html.Encode(Model.reservas[i].Sesion.Sala.Id) </b>
+                 Precio: <b>@Html.Encode(Model.reservas[i].Precio)€</b><br />
+                 Fila: <b>@Html.Encode(Model.reservas[i].Fila) </b>
+                 Columna: <b>@Html.Encode(Model.reservas[i].Columna) </b>
+                 
+
+        </div>
+        <div class="clear"></div>                
+    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

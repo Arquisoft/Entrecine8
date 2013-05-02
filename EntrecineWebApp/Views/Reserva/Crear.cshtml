@@ -67,6 +67,7 @@
                 @Html.ValidationMessageFor(model => model.TarjetaCredito)
             </div>
             
+                @Html.HiddenFor(model => model.PermiteEnEfectivo)
                 @Html.HiddenFor(model => model.Sesion.Id)
             <p>
                 <input type="submit" value="Realizar Reserva" />

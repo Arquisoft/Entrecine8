@@ -856,3 +856,12 @@ input[type="radio"] {
     background-color:#e2e2e2;
     cursor:pointer;
 }
+
+.recibo {
+    float: left;
+    margin:20px;
+}
+
+.clear {
+    clear:both;
+}

@@ -43,7 +43,6 @@ namespace EntrecineWebApp.Controllers
                 // Elemento temporal para construir la tabla de checkboxes
                 model.Ocupacion = new Butaca[model.Sesion.Sala.Filas * model.Sesion.Sala.Columnas];
 
-                Random rdn = new Random();
                 int k = 0;
                 for (int i = 0; i < model.Sesion.Sala.Filas; i++)
                     for (int j = 0; j < model.Sesion.Sala.Columnas; j++)
@@ -51,7 +50,7 @@ namespace EntrecineWebApp.Controllers
                         model.Ocupacion[k] = new Butaca();
                         model.Ocupacion[k].Fila = i;
                         model.Ocupacion[k].Columna = j;
-                        model.Ocupacion[k].Ocupada = rdn.Next(4).Equals(1);
+                        model.Ocupacion[k].Ocupada = db.ReservaConjunto.FirstOrDefault(r => r.Fila == i && r.Columna == j && r.Sesion.Id == model.Sesion.Id) != null;
                         k++;
                     }
             }
@@ -69,8 +68,6 @@ namespace EntrecineWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Crear(ReservaModel reservamodel, string[] butacas)
         {
-            if (ModelState.IsValid)
-            {
                 bool error = false;
                 if (!reservamodel.PermiteEnEfectivo && String.IsNullOrWhiteSpace(reservamodel.TarjetaCredito))
                 {
@@ -87,6 +84,7 @@ namespace EntrecineWebApp.Controllers
                     return fillModelFor(reservamodel, reservamodel.Sesion.Id);
 
                 // Aquí se debería validar la tarjeta de crédito
+                List<Reserva> reservas = new List<Reserva>();
 
                 for (int i = 0; i < butacas.Length;i++ )
                 {
@@ -98,49 +96,45 @@ namespace EntrecineWebApp.Controllers
                     //Buscamos la sesion completa
                     Sesion sesion = db.SesionConjunto.FirstOrDefault(x => x.Id.Equals(reservamodel.Sesion.Id));
 
+
                     //Añadimos el objeto al mapeador
-                    Reserva reserva = new Reserva() {Fila=Int32.Parse(butaca[0]), Columna=Int32.Parse(butaca[1]), SesionId=reservamodel.Sesion.Id, Usuario=user,};
+                    Reserva reserva = new Reserva() {Fila=Int32.Parse(butaca[0]), Columna=Int32.Parse(butaca[1]), SesionId=reservamodel.Sesion.Id, UsuarioId=user.Id, Precio = sesion.PrecioCalculado, Sesion=sesion, Usuario=user};
+
+                    
+                    // Si hay alguna butaca reservada ya cancelamos la operación
+                    if (db.ReservaConjunto.FirstOrDefault(r => r.Fila == reserva.Fila && r.Columna == reserva.Columna && r.Sesion.Id == sesion.Id) != null)
+                    {
+                        foreach (Reserva nocompletada in reservas) // Borramos las reservas no completadas del contenedor
+                            db.ReservaConjunto.Remove(nocompletada);
+
+                        ModelState.AddModelError("", "Butaca ya reservada.");
+
+                        return fillModelFor(reservamodel, reservamodel.Sesion.Id);
+                    }
+
+                    db.ReservaConjunto.Add(reserva);
+                    reservas.Add(reserva);
                 }
 
+                db.SaveChanges();
 
-                //db.ReservaConjunto.Add(reserva);
-                //db.SaveChanges();
-                return RedirectToAction("Index", "Home");
-            }
+                ReciboModel recibo = new ReciboModel();
+                recibo.reservas = reservas;
+                //recibo.FormaDePago = reservamodel.FormaDePago;
+                TempData["recibo"] = recibo;
 
-            //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id", reserva.SesionId);
-            return View(reservamodel);
+                return RedirectToAction("Recibo","Reserva");
         }
 
 
         //
         // GET: /Reserva/Recibo
-
-        public ActionResult Recibo(int total)
+        public ActionResult Recibo()
         {
-            
-            ReservaModel model = new ReservaModel();
-            /*
-            model.Filas = 10;
-            model.Columnas = 18;
+            if (TempData["recibo"] == null)
+                return RedirectToAction("Index", "Home");
 
-            model.Ocupacion = new Butaca[model.Filas * model.Columnas];
-
-            Random rdn = new Random();
-            int k = 0;
-            for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 18; j++)
-                {
-                    model.Ocupacion[k] = new Butaca();
-                    model.Ocupacion[k].Fila = i;
-                    model.Ocupacion[k].Columna = j;
-                    model.Ocupacion[k].Ocupada = rdn.Next(4).Equals(1);
-                    k++;
-                }
-
-            //ViewBag.SesionId = new SelectList(db.SesionConjunto, "Id", "Id");
-             */
-            return View(model);
+            return View((ReciboModel) TempData["recibo"]);
         }
     }
 }
