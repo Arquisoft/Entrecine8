@@ -193,6 +193,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReciboModel.cs" />
     <Compile Include="Models\SesionAnnotations.cs" />
     <Compile Include="Models\Descuento.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>
@@ -361,6 +362,7 @@
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Reserva\Crear.cshtml" />
     <Content Include="Views\Recomendaciones\Index.cshtml" />
+    <Content Include="Views\Reserva\Recibo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

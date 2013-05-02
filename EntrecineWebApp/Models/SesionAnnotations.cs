@@ -16,7 +16,10 @@ namespace EntrecineWebApp.Models
         {
             get
             {
-                return Pelicula.Precio - (Pelicula.Precio * Descuento.Porcentaje);
+                if (Pelicula != null && Descuento != null)
+                    return Pelicula.Precio - (Pelicula.Precio * Descuento.Porcentaje);
+                else
+                    return 0;
             }
         }
     }

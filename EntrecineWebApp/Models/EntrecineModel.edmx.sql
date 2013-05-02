@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/01/2013 21:11:32
+-- Date Created: 05/02/2013 16:42:27
 -- Generated from EDMX file: C:\Users\Desarrollo\Documents\GitHub\Entrecine8\EntrecineWebApp\Models\EntrecineModel.edmx
 -- --------------------------------------------------
 
@@ -75,7 +75,8 @@ CREATE TABLE [dbo].[ReservaConjunto] (
     [Fila] int  NOT NULL,
     [Columna] int  NOT NULL,
     [SesionId] int  NOT NULL,
-    [UsuarioId] int  NOT NULL
+    [UsuarioId] int  NOT NULL,
+    [Precio] float  NOT NULL
 );
 GO
 
