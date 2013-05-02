@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Recomendaciones";
+}
+
+<h2>Lo más visto en Entrecine </h2>
+
+@if (Request.IsAuthenticated) {
+    <h2>Recomendaciones para @Html.Encode(User.Identity.Name)</h2>
+}
