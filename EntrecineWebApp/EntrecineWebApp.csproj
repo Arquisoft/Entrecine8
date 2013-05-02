@@ -196,6 +196,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ReciboModel.cs" />
+    <Compile Include="Models\RecomendacionesModel.cs" />
     <Compile Include="Models\SesionAnnotations.cs" />
     <Compile Include="Models\Descuento.cs">
       <DependentUpon>EntrecineModel.tt</DependentUpon>

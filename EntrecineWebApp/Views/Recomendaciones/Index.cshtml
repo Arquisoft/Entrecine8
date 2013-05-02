@@ -1,5 +1,5 @@
 ﻿@using EntrecineWebApp.Models;
-@model IList<Pelicula>
+@model RecomendacionesModel
 
 @{
     ViewBag.Title = "Recomendaciones";
@@ -8,12 +8,12 @@
 <h2>Lo más visto en Entrecine </h2>
 <div id="masVisto">
 
-    @for(int i=0;i<Model.Count();i++)
+    @for(int i=0;i<Model.PelisMasVistas.Count();i++)
     {
             <div class="movieCartelera">
-                <div class="titulo"><b>@((i+1)+"º:   ")</b>@Html.DisplayFor(modelItem => Model[i].Nombre)</div>
-                <a href="@Url.Content("~/Pelicula/Detalles/"+Model[i].Id)"><img src="@Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>Model[i].Id)+".jpg")" /></a>
-                
+                <div class="titulo"><b>@((i+1)+"º:   ")</b>@Html.DisplayFor(modelItem => Model.PelisMasVistas[i].Nombre)</div>
+                <a href="@Url.Content("~/Pelicula/Detalles/"+Model.PelisMasVistas[i].Id)"><img src="@Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>Model.PelisMasVistas[i].Id)+".jpg")" /></a>
+                <div class="ventas"><b>@(Model.VecesVista(Model.PelisMasVistas[i])+"  ventas")</b></div>
             </div>
             
     }

@@ -14,13 +14,8 @@ namespace EntrecineWebApp.Controllers
 
         public ActionResult Index()
         {
-            EntrecineModelContainer db = new EntrecineModelContainer();
-            Func<Pelicula, int> numeroVistas = pelicula =>
-            {
-
-                return db.ReservaConjunto.Select(r => r.Sesion.Pelicula.Id == pelicula.Id).Count();
-            };
-            return View(db.PeliculaConjunto.OrderBy(numeroVistas).Take(3).ToList());
+           
+            return View(new RecomendacionesModel());
         }
 
     }
