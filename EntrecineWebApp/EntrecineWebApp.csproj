@@ -187,6 +187,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeliculaController.cs" />
+    <Compile Include="Controllers\RecomendacionesController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -359,6 +360,7 @@
     <Content Include="Views\Pelicula\Editar.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Reserva\Crear.cshtml" />
+    <Content Include="Views\Recomendaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
