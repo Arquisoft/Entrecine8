@@ -7,49 +7,18 @@
     var ruta = "../../Images/Caratulas/caratula_" + Model.Id + ".jpg";
 }
 
-<style>
-    h2 {
-        padding-left:10px;
-    }
-    #caratula {
-        float:left;
-        border-right: groove;
-        padding:5px;
-        height:215px;
-        width:150px;
-    }
-    .informacion {
-        float: left;
-        padding:5px;
-    }
-    .display-field {
-        padding-left:20px;
-    }
-    #back {
-        clear:both;
-        text-align: right;
-    }
-
-</style>
 <h2>Información detallada</h2>
-<div id="caratula">
-    <img src="@ruta" alt="portada" width="150" height="215"/>
+<div class="movieCaratula">
+    <img src="@ruta" alt="Portada"/>
 </div>
 
-<div class="informacion">
+<div class="movieDetalles">
 
     <div class="display-label">
          @Html.LabelFor(model => model.Nombre)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Nombre)
-    </div>
-
-    <div class="display-label">
-         @Html.LabelFor(model => model.Descripcion)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Descripcion)
     </div>
 
     <div class="display-label">
@@ -65,23 +34,30 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Duracion)
     </div>
-
-    <div id="sesiones">
+    <br />
+    <div class="display-label">
+         @Html.LabelFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+    
+</div>
+<div id ="sesiones">
+    
+<h3>Próximas Sesiones</h3>
+    <table id="tablaSesiones">
+        <thead><tr><th style="width:60px;">Sala</th><th>Fecha</th><th>Precio</th></tr></thead>
+        <tbody>
         @foreach(var sesionAct in Model.Sesion){    
                 if(DateTime.Now<sesionAct.Fecha && sesionAct.Fecha< DateTime.Now.AddDays(7)){
-                    @Html.LabelFor(sesion=>sesionAct.Sala)
-                    <div class="display-field">
-                         @Html.DisplayFor(sesion=>sesionAct.Sala.Id) 
-                         @Html.ActionLink(sesionAct.Fecha.ToString("dd/MM HH:mm"), "Crear", "Reserva", new {id=sesionAct.Id },new {})
-                    </div>                  
+                    <tr onclick="document.location = '/Reserva/Crear/@Html.Encode(sesionAct.Id)';">
+                         <td>@Html.Encode(sesionAct.Sala.Id) </td>
+                         <td>@Html.Encode(sesionAct.Fecha.ToString("dd/MM/yyyy HH:mm"))</td>       
+                         <td>@Html.Encode(sesionAct.PrecioCalculado)€</td>          
+                    </tr>
                 }
         }
-    </div>
+        </tbody>
+    </table>
 </div>
-
-
-
-
-<p id="back">
-    @Html.ActionLink("Back to List", "Index")
-</p>

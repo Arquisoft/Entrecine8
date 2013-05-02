@@ -11,7 +11,7 @@
     <h3>Sesión</h3>
     <img src="@Html.Encode(ImagePath)" />
     <p>Película: <b>@Html.Encode(Model.Sesion.Pelicula.Nombre)</b><br />
-    Precio por entrada : <b>@Html.Encode(Model.Sesion.Pelicula.Precio)€</b><br />
+    Precio por entrada : <b>@Html.Encode(Model.Sesion.PrecioCalculado)€</b><br />
     Hora de inicio : <b>@Html.Encode(Model.Sesion.Fecha)</b><br />
     Duración : <b>@Html.Encode(Model.Sesion.Pelicula.Duracion) minutos</b></p>
     </aside>

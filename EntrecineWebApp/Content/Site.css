@@ -815,3 +815,44 @@ input[type="radio"] {
     width:auto;
     margin:0 30px;
 }
+
+.movieCaratula {
+    margin:20px;
+    float:left;
+}
+
+.movieCaratula img {
+    width:220px;
+    height:310px;
+    
+    box-shadow: 0px 0px 8px #333;
+}
+
+
+.movieDetalles {
+    margin:20px;
+    float:left;
+}
+
+#sesiones {
+    clear:both;
+
+}
+
+#sesiones table {
+    width:70%;
+    margin:10px auto;
+}
+
+#sesiones table td,th {
+    padding:5px 0;
+}
+
+#sesiones table thead tr {
+    border-bottom:2px solid #333;
+}
+
+#sesiones table tbody tr:hover {
+    background-color:#e2e2e2;
+    cursor:pointer;
+}
