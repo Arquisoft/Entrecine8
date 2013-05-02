@@ -16,7 +16,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Fecha)
+            @Html.LabelFor(model => model.Fecha, new { @class="datefield" })
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Fecha)
@@ -46,7 +46,7 @@
             @Html.DropDownList("PeliculaId", String.Empty)
             @Html.ValidationMessageFor(model => model.PeliculaId)
         </div>
-
+        <input type="date" class=".datefield" />
         <p>
             <input type="submit" value="Save" />
         </p>
