@@ -293,10 +293,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EntrecineModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Images\cartelera_1.jpg" />
-    <Content Include="Images\cartelera_2.jpg" />
-    <Content Include="Images\cartelera_3.jpg" />
-    <Content Include="Images\cartelera_4.jpg" />
     <Content Include="Models\EntrecineModel.edmx.diagram">
       <DependentUpon>EntrecineModel.edmx</DependentUpon>
     </Content>
@@ -357,12 +353,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Usuario\Registro.cshtml" />
     <Content Include="Views\Pelicula\Index.cshtml" />
-    <Content Include="Views\Pelicula\Details.cshtml" />
-    <Content Include="Views\Pelicula\Create.cshtml" />
-    <Content Include="Views\Pelicula\Edit.cshtml" />
-    <Content Include="Views\Pelicula\Delete.cshtml" />
+    <Content Include="Views\Pelicula\Detalles.cshtml" />
+    <Content Include="Views\Pelicula\Crear.cshtml" />
+    <Content Include="Views\Pelicula\Editar.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
-    <Content Include="Views\Pelicula\Lista.cshtml" />
     <Content Include="Views\Reserva\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>

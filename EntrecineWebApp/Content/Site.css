@@ -793,6 +793,24 @@ tr.pager td {
     margin-bottom:10px;
 }
 
+.movieCartelera {
+    text-align:center;
+    margin: 0 25px;
+    width: 190px;
+    float:left;
+}
+
+.movieCartelera .titulo {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.movieCartelera a img {
+    height: 260px;
+    width: 180px;
+    box-shadow: 0px 0px 8px #333;
+}
+
 input[type="radio"] {
     width:auto;
     margin:0 30px;

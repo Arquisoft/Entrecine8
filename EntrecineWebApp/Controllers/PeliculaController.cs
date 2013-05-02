@@ -23,9 +23,9 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // GET: /Pelicula/Details/5
+        // GET: /Pelicula/Detalles/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Detalles(int id = 0)
         {
             Pelicula pelicula = db.PeliculaConjunto.Find(id);
             if (pelicula == null)
@@ -36,19 +36,28 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // GET: /Pelicula/Create
+        // GET: /Pelicula/Crear
 
-        public ActionResult Create()
+        public ActionResult Crear()
         {
-            return View();
+            //Seguridad
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user != null && user.Rol >= 2)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         //
-        // POST: /Pelicula/Create
+        // POST: /Pelicula/Crear
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Pelicula pelicula)
+        public ActionResult Crear(Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
@@ -69,9 +78,9 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // GET: /Pelicula/Edit/5
+        // GET: /Pelicula/Editar/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Editar(int id = 0)
         {
             Pelicula pelicula = db.PeliculaConjunto.Find(id);
             if (pelicula == null)
@@ -82,11 +91,11 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // POST: /Pelicula/Edit/5
+        // POST: /Pelicula/Editar/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Pelicula pelicula)
+        public ActionResult Editar(Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
@@ -95,32 +104,6 @@ namespace EntrecineWebApp.Controllers
                 return RedirectToAction("Index");
             }
             return View(pelicula);
-        }
-
-        //
-        // GET: /Pelicula/Delete/5
-
-        public ActionResult Delete(int id = 0)
-        {
-            Pelicula pelicula = db.PeliculaConjunto.Find(id);
-            if (pelicula == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pelicula);
-        }
-
-        //
-        // POST: /Pelicula/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Pelicula pelicula = db.PeliculaConjunto.Find(id);
-            db.PeliculaConjunto.Remove(pelicula);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

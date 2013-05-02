@@ -4,88 +4,17 @@
     ViewBag.Title = "Listado de Peliculas";
 }
 
-<!--Prueba CSS incrustado
+<h2>Cartelera</h2>
 
-<style type="text/css">
-    h2 {
-        text-align: center;
-        font-size: 1.2em;
-    }
-
-    .contenedorPeli {
-        clear: both;
-    }
-    .pelicula {
-        min-width: 90%;
-        border-top: solid;
-        border-width: medium;
-        max-height: 400px;
-        margin-bottom: 5em;
-        padding: 1em;
-    }
-
-    .portada {
-        width: 30%;
-        float: left;
-    }
-
-    .datosPeli {
-        width: 55%;
-        float: right;
-    }
-</style>
-    -->
-
-<style>
-    .listadoDePelis {
-    text-align:center;
-
-    }
-    h2 {
-        text-align:center;
-        font-size:1.4em;
-        border-bottom:double;
-        margin: 10px;
-    }
-    .titulo {
-        text-align:center;
-        font-size:1em;
-        font-family:Verdana,Arial;
-    }
-    .contenedorPeli {
-        margin:20px;
-        border:dashed;
-        float:left;
-        height:320px;
-        width:210px;
-    }
-
-    .pelicula {
-        text-align:center;
-    }
-
-    .portada {
-        text-align:center;
-
-    }
-</style>
-<h2>CARTELERA</h2>
-
-<div id="listadoPelis">
+<div id="cartelera">
 
     @foreach (var item in Model)
     {
-    <div class="contenedorPeli">
-        <div class="pelicula">
-            <div class="titulo">
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </div>
-            <div class="portada">
-                     @Html.ActionLink(" ", "Details", "Pelicula",new{id=item.Id}, new {style = "background: url('" + Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>item.Id)+".jpg") + "') no-repeat center; display:block; height:300px; width:200px;" })
+            <div class="movieCartelera">
+                <div class="titulo">@Html.DisplayFor(modelItem => item.Nombre)</div>
+                <a href="@Url.Content("~/Pelicula/Detalles/"+item.Id)"><img src="@Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>item.Id)+".jpg")" /></a>
             </div>
             
-        </div>
-    </div>
     }
 
 </div>
