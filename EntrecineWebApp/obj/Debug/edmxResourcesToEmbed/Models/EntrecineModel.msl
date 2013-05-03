@@ -9,6 +9,7 @@
           <ScalarProperty Name="Columna" ColumnName="Columna" />
           <ScalarProperty Name="SesionId" ColumnName="SesionId" />
           <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

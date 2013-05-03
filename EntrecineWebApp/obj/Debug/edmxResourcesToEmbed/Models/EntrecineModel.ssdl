@@ -46,6 +46,7 @@
     <Property Name="Columna" Type="int" Nullable="false" />
     <Property Name="SesionId" Type="int" Nullable="false" />
     <Property Name="UsuarioId" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="UsuarioConjunto">
     <Key>

@@ -43,6 +43,7 @@
     <Property Name="SesionId" Nullable="false" Type="Int32" />
     <NavigationProperty Name="Usuario" Relationship="EntrecineModel.ReservaUsuario" FromRole="Reserva" ToRole="Usuario" />
     <Property Type="Int32" Name="UsuarioId" Nullable="false" />
+    <Property Type="Double" Name="Precio" Nullable="false" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
