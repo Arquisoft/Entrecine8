@@ -11,13 +11,13 @@ namespace EntrecineWebApp.Models
     public class RecomendacionesModel : Controller
     {
 
-        [Display(Name = "VecesVista")]
+        [Display(Name = "Veces Vista")]
         public Func<Pelicula, int> VecesVista = pelicula =>
         {
             return new EntrecineModelContainer().ReservaConjunto.Where(r => r.Sesion.Pelicula.Id == pelicula.Id).Count();
 
         };
-        [Display(Name = "MasVistas")]
+        [Display(Name = "Más Vistas")]
         public IList<Pelicula> PelisMasVistas { get { return new EntrecineModelContainer().PeliculaConjunto.OrderByDescending(VecesVista).Take(3).ToList(); } }
 
         public IEnumerable<Pelicula> Recomendaciones(String nombre, int grado)

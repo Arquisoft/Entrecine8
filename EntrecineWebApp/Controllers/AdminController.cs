@@ -18,46 +18,9 @@ namespace EntrecineWebApp.Controllers
 
         public ActionResult Index()
         {
-            return View(db.PeliculaConjunto.ToList());
+            return ComprobarUsuario(View(db.PeliculaConjunto.ToList()),RedirectToAction("Index", "Home"));
         }
 
-        //
-        // GET: /Admin/Detalles/5
-
-        public ActionResult Detalles(int id = 0)
-        {
-            Pelicula pelicula = db.PeliculaConjunto.Find(id);
-            if (pelicula == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pelicula);
-        }
-
-        //
-        // GET: /Admin/Crear
-
-        public ActionResult Crear()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Admin/Crear
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Crear(Pelicula pelicula)
-        {
-            if (ModelState.IsValid)
-            {
-                db.PeliculaConjunto.Add(pelicula);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(pelicula);
-        }
 
         //
         // GET: /Admin/Editar/5
@@ -69,55 +32,27 @@ namespace EntrecineWebApp.Controllers
 
         public ActionResult EditarSesiones()
         {
-            return View(db.SesionConjunto.ToList());
+            return ComprobarUsuario(View(db.SesionConjunto.ToList()), RedirectToAction("Index", "Home"));
         }
 
-        //
-        // POST: /Admin/Editar/5
-/*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Editar(Pelicula pelicula)
+        public ActionResult EditarDescuentos()
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(pelicula).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(pelicula);
-        }
-*/
-        //
-        // GET: /Admin/Borrar/5
-
-        public ActionResult Borrar(int id = 0)
-        {
-            Pelicula pelicula = db.PeliculaConjunto.Find(id);
-            if (pelicula == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pelicula);
-        }
-
-        //
-        // POST: /Admin/Borrar/5
-
-        [HttpPost, ActionName("Borrar")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Pelicula pelicula = db.PeliculaConjunto.Find(id);
-            db.PeliculaConjunto.Remove(pelicula);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return ComprobarUsuario(View(db.DescuentoConjunto.ToList()), RedirectToAction("Index", "Home"));
         }
 
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        protected ActionResult ComprobarUsuario(ActionResult privilegiado, ActionResult erroneo)
+        {
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user != null && user.Rol >= 2)
+                return privilegiado;
+            else
+                return erroneo;
         }
     }
 }

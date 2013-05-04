@@ -40,7 +40,9 @@ namespace EntrecineWebApp.Controllers
 
         public ActionResult Crear()
         {
-            //Seguridad
+            return ComprobarUsuario(View(), RedirectToAction("Index", "Home"));
+            
+            /* Seguridad
             Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
             if (user != null && user.Rol >= 2)
             {
@@ -50,6 +52,7 @@ namespace EntrecineWebApp.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            */
         }
 
         //
@@ -87,7 +90,15 @@ namespace EntrecineWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            return ComprobarUsuario(View(pelicula), RedirectToAction("Index","Home"));
+            /*
+            Pelicula pelicula = db.PeliculaConjunto.Find(id);
+            if (pelicula == null)
+            {
+                return HttpNotFound();
+            }
             return View(pelicula);
+             */
         }
 
         //
@@ -112,6 +123,13 @@ namespace EntrecineWebApp.Controllers
             base.Dispose(disposing);
         }
 
-
+        protected ActionResult ComprobarUsuario(ActionResult privilegiado, ActionResult erroneo)
+        {
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user != null && user.Rol >= 2)
+                return privilegiado;
+            else
+                return erroneo;
+        }
     }
 }

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EntrecineWebApp.Models.Descuento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de descuentos</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Porcentaje)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Porcentaje)
+        </td>
+    </tr>
+}
+
+</table>

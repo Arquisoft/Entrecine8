@@ -1,0 +1,46 @@
+﻿@model EntrecineWebApp.Models.Descuento
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edición de descuento</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Descuento</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Porcentaje)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Porcentaje)
+            @Html.ValidationMessageFor(model => model.Porcentaje)
+        </div>
+
+        <p>
+            <input type="submit" value="Guardar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index","Admin")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DescuentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeliculaController.cs" />
     <Compile Include="Controllers\RecomendacionesController.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DescuentoAnnotations.cs" />
     <Compile Include="Models\ReciboModel.cs" />
     <Compile Include="Models\RecomendacionesModel.cs" />
     <Compile Include="Models\SesionAnnotations.cs" />
@@ -376,13 +378,16 @@
     <Content Include="Views\Reserva\Recibo.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Editar.cshtml" />
-    <Content Include="Views\Admin\Borrar.cshtml" />
     <Content Include="Views\Admin\EditarSesiones.cshtml" />
     <Content Include="Views\Sesion\Index.cshtml" />
-    <Content Include="Views\Sesion\Details.cshtml" />
     <Content Include="Views\Sesion\Create.cshtml" />
     <Content Include="Views\Sesion\Edit.cshtml" />
     <Content Include="Views\Sesion\Delete.cshtml" />
+    <Content Include="Views\Descuento\Index.cshtml" />
+    <Content Include="Views\Descuento\Create.cshtml" />
+    <Content Include="Views\Descuento\Edit.cshtml" />
+    <Content Include="Views\Descuento\Delete.cshtml" />
+    <Content Include="Views\Admin\EditarDescuentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

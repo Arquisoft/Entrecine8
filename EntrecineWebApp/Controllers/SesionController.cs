@@ -22,28 +22,27 @@ namespace EntrecineWebApp.Controllers
             return View(sesionconjunto.ToList());
         }
 
-        //
-        // GET: /Sesion/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Sesion sesion = db.SesionConjunto.Find(id);
-            if (sesion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sesion);
-        }
 
         //
         // GET: /Sesion/Create
 
         public ActionResult Create()
         {
-            ViewBag.DescuentoId = new SelectList(db.DescuentoConjunto, "Id", "Nombre");
-            ViewBag.PeliculaId = new SelectList(db.PeliculaConjunto, "Id", "Nombre");
-            ViewBag.SalaId = new SelectList(db.SalaConjunto, "Id", "Id");
-            return View();
+
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user != null && user.Rol >= 2)
+            {
+                ViewBag.DescuentoId = new SelectList(db.DescuentoConjunto, "Id", "Nombre");
+                ViewBag.PeliculaId = new SelectList(db.PeliculaConjunto, "Id", "Nombre");
+                ViewBag.SalaId = new SelectList(db.SalaConjunto, "Id", "Id");
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         //
@@ -63,6 +62,7 @@ namespace EntrecineWebApp.Controllers
             ViewBag.DescuentoId = new SelectList(db.DescuentoConjunto, "Id", "Nombre", sesion.DescuentoId);
             ViewBag.PeliculaId = new SelectList(db.PeliculaConjunto, "Id", "Nombre", sesion.PeliculaId);
             ViewBag.SalaId = new SelectList(db.SalaConjunto, "Id", "Id", sesion.SalaId);
+
             return View(sesion);
         }
 
@@ -76,10 +76,17 @@ namespace EntrecineWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DescuentoId = new SelectList(db.DescuentoConjunto, "Id", "Nombre", sesion.DescuentoId);
-            ViewBag.PeliculaId = new SelectList(db.PeliculaConjunto, "Id", "Nombre", sesion.PeliculaId);
-            ViewBag.SalaId = new SelectList(db.SalaConjunto, "Id", "Id", sesion.SalaId);
-            return View(sesion);
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user != null && user.Rol >= 2)
+            {
+                ViewBag.DescuentoId = new SelectList(db.DescuentoConjunto, "Id", "Nombre", sesion.DescuentoId);
+                ViewBag.PeliculaId = new SelectList(db.PeliculaConjunto, "Id", "Nombre", sesion.PeliculaId);
+                ViewBag.SalaId = new SelectList(db.SalaConjunto, "Id", "Id", sesion.SalaId);
+
+                return View(sesion);
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         //
@@ -98,6 +105,7 @@ namespace EntrecineWebApp.Controllers
             ViewBag.DescuentoId = new SelectList(db.DescuentoConjunto, "Id", "Nombre", sesion.DescuentoId);
             ViewBag.PeliculaId = new SelectList(db.PeliculaConjunto, "Id", "Nombre", sesion.PeliculaId);
             ViewBag.SalaId = new SelectList(db.SalaConjunto, "Id", "Id", sesion.SalaId);
+
             return View(sesion);
         }
 
@@ -107,11 +115,13 @@ namespace EntrecineWebApp.Controllers
         public ActionResult Delete(int id = 0)
         {
             Sesion sesion = db.SesionConjunto.Find(id);
+            
             if (sesion == null)
             {
                 return HttpNotFound();
             }
-            return View(sesion);
+
+            return ComprobarUsuario(View(sesion),RedirectToAction("Index","Home"));
         }
 
         //
@@ -131,6 +141,15 @@ namespace EntrecineWebApp.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        protected ActionResult ComprobarUsuario(ActionResult privilegiado, ActionResult erroneo)
+        {
+            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
+            if (user != null && user.Rol >= 2)
+                return privilegiado;
+            else
+                return erroneo;
         }
     }
 }

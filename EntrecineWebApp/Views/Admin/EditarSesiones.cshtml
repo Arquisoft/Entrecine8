@@ -1,17 +1,18 @@
-﻿@model IEnumerable<EntrecineWebApp.Models.Sesion>
+﻿@using EntrecineWebApp.Models
+@model IEnumerable<EntrecineWebApp.Models.Sesion>
 
 @{
-    ViewBag.Title = "EditarSesiones";
+    ViewBag.Title = "Editar Sesiones";
 }
 
-<h2>EditarSesiones</h2>
+<h2>Edición de sesiones</h2>
 <table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.SalaId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PeliculaId)
+            @Html.DisplayNameFor(model => model.Pelicula)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fecha)
@@ -28,13 +29,13 @@
             @Html.DisplayFor(modelItem => item.SalaId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PeliculaId)
+            @Html.DisplayFor(modelItem => item.Pelicula.Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Fecha)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DescuentoId)
+            @Html.DisplayFor(modelItem => item.Descuento.Porcentaje)%
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", "Sesion", new { id = item.Id }, new { }) |
@@ -46,6 +47,6 @@
 </table>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index")
 </div>
 

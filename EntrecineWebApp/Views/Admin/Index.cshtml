@@ -4,11 +4,14 @@
     ViewBag.Title = "Indice";
 }
 
-<h2>Indice</h2>
+<h2>Administración del cine</h2>
 
 <p>
     @Html.ActionLink("Crear película", "Crear", "Pelicula")
-    @Html.ActionLink("Edicion de películas", "Editar","Admin")
-    @Html.ActionLink("Edicion de sesiones", "EditarSesiones","Admin")
+    @Html.ActionLink("Crear sesión", "Create", "Sesion")
+    @Html.ActionLink("Crear descuento", "Create", "Descuento")
+    @Html.ActionLink("Edición de películas", "Editar","Admin")
+    @Html.ActionLink("Edición de sesiones", "EditarSesiones","Admin")
+    @Html.ActionLink("Edición de descuentos", "EditarDescuentos","Admin")
 </p>
 
