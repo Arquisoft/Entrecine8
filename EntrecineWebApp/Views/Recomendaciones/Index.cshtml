@@ -22,4 +22,19 @@
 
 @if (Request.IsAuthenticated) {
     <h2>Recomendaciones para @Html.Encode(User.Identity.Name)</h2>
+    
+
+
+   <div id="Recomendaciones">
+
+
+     @foreach(Pelicula p in Model.Recomendaciones(User.Identity.Name))
+    {
+            <div class="movieCartelera">
+                <div class="titulo">@Html.DisplayFor(modelItem => p.Nombre)</div>
+                <a href="@Url.Content("~/Pelicula/Detalles/"+p.Id)"><img src="@Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>p.Id)+".jpg")" /></a>
+             </div>
+            
+    }
+        </div>
 }
