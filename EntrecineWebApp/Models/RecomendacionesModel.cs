@@ -20,17 +20,33 @@ namespace EntrecineWebApp.Models
         [Display(Name = "MasVistas")]
         public IList<Pelicula> PelisMasVistas { get { return new EntrecineModelContainer().PeliculaConjunto.OrderByDescending(VecesVista).Take(3).ToList(); } }
 
-        public IEnumerable<Pelicula> Recomendaciones(String nombre)
+        public IEnumerable<Pelicula> Recomendaciones(String nombre, int grado)
         {
             EntrecineModelContainer db = new EntrecineModelContainer();
             Usuario cliente = db.UsuarioConjunto.First(u => u.Nombre == nombre);
             Func<Usuario, IEnumerable<Pelicula>> pelisQueVio = usuario => db.ReservaConjunto.Where(r => r.Usuario.Id == usuario.Id).Select(r => r.Sesion.Pelicula);
-            Func<Usuario, int> nPelisEnComun = usuario =>   pelisQueVio(usuario).Intersect(pelisQueVio(cliente)).Count();
-            IEnumerable<Pelicula> recomendaciones = pelisQueVio(db.UsuarioConjunto.Where(u=>u.Id!=cliente.Id).OrderByDescending(nPelisEnComun).First()).Where(p=>!pelisQueVio(cliente).Contains(p));
-            return recomendaciones;
+            Func<Usuario, int> nPelisEnComun = usuario => pelisQueVio(usuario).Intersect(pelisQueVio(cliente)).Count();
+            int i = -1;
+            IEnumerable<Usuario> usuariosPosiblesOrdenados = db.UsuarioConjunto.Where(u => u.Id != cliente.Id).OrderByDescending(nPelisEnComun).TakeWhile(u => { i++; return grado > i; });
+            if (usuariosPosiblesOrdenados.Count() == 0)
+            {
+                List<Pelicula> noMencionadas = new List<Pelicula>();
+                IEnumerable<int> mencionadas = pelisQueVio(cliente).Union(PelisMasVistas).Select(p => p.Id);
+                foreach (Pelicula p in db.PeliculaConjunto)
+                    if (!mencionadas.Contains(p.Id))
+                        noMencionadas.Add(p);
+                return noMencionadas.OrderBy(VecesVista);
+
+            }
+            IEnumerable<Pelicula> recomendaciones = pelisQueVio(usuariosPosiblesOrdenados.First()).Where(p => !pelisQueVio(cliente).Contains(p));
+
+            return recomendaciones.Count() == 0 ? Recomendaciones(nombre, grado + 1) : recomendaciones;
         }
 
-
+        public IEnumerable<Pelicula> Recomendaciones(String nombre)
+        {
+            return Recomendaciones(nombre, 0);
+        }
 
     }
 }

@@ -21,12 +21,10 @@
 </div>
 
 @if (Request.IsAuthenticated) {
-    <h2>Recomendaciones para @Html.Encode(User.Identity.Name)</h2>
-    
-
 
    <div id="Recomendaciones">
-
+       
+    <h2>Recomendaciones para @Html.Encode(User.Identity.Name)</h2>
 
      @foreach(Pelicula p in Model.Recomendaciones(User.Identity.Name))
     {
