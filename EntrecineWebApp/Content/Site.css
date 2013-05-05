@@ -306,7 +306,7 @@ article {
 
 aside {
     float: right;
-    width: 25%;
+    width: 30%;
 }
 
     aside ul {
@@ -879,4 +879,9 @@ ul.round li {
         padding-left: 45px;
         background: url("../Images/orderedListFlecha.png") no-repeat;
 
+}
+
+img.preserva {
+    width: 150px;
+    height: 217px;
 }

@@ -9,11 +9,12 @@
     <h2>Comprar entradas</h2>
     <aside>
     <h3>Sesión</h3>
-    <img src="@Html.Encode(ImagePath)" />
+    <img src="@Html.Encode(ImagePath)" class="preserva" />
     <p>Película: <b>@Html.Encode(Model.Sesion.Pelicula.Nombre)</b><br />
     Precio por entrada : <b>@Html.Encode(Model.Sesion.PrecioCalculado)€</b><br />
+    Descuento aplicado : <b>@Html.Encode(Model.Sesion.Descuento.Porcentaje)%</b> (@Html.Raw(Model.Sesion.Descuento.Nombre))<br />
     Hora de inicio : <b>@Html.Encode(Model.Sesion.Fecha)</b><br />
-    Duración : <b>@Html.Encode(Model.Sesion.Pelicula.Duracion) minutos</b></p>
+    Duración : <b>@Html.Encode(Model.Sesion.Pelicula.Duracion) minutos</b></p>       
     </aside>
     @using (Html.BeginForm())
     {

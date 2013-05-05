@@ -42,8 +42,8 @@ namespace EntrecineWebApp.Models
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage="Fecha imprescindible")]
-        [DataType(DataType.DateTime)]
+        [Required]
+        [DataType(DataType.DateTime, ErrorMessage = "Formato: dd/mm/aaaa hh:mm")]
         [DisplayName("Fecha y hora")]
         public DateTime Fecha { get; set; }
 
