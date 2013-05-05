@@ -868,3 +868,15 @@ input[type="radio"] {
 #Recomendaciones {
 float:left;
 }
+
+ul.round {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul.round li {
+        margin: 25px 0;
+        padding-left: 45px;
+        background: url("../Images/orderedListFlecha.png") no-repeat;
+
+}

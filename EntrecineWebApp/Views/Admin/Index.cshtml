@@ -4,14 +4,26 @@
     ViewBag.Title = "Indice";
 }
 
-<h2>Administración del cine</h2>
+<h2>Administración de Entrecine</h2>
 
-<p>
-    @Html.ActionLink("Crear película", "Crear", "Pelicula")
-    @Html.ActionLink("Crear sesión", "Create", "Sesion")
-    @Html.ActionLink("Crear descuento", "Create", "Descuento")
-    @Html.ActionLink("Edición de películas", "Editar","Admin")
-    @Html.ActionLink("Edición de sesiones", "EditarSesiones","Admin")
-    @Html.ActionLink("Edición de descuentos", "EditarDescuentos","Admin")
-</p>
+<ul class="round">
+    <li><h5>@Html.ActionLink("Crear película", "Crear", "Pelicula")</h5>
+        Añade nuevas películas a entrecine.
+    </li>
+    <li><h5>@Html.ActionLink("Crear sesión", "Create", "Sesion")</h5>
+        Define nuevas sesiones en entrecine.
+    </li>
+    <li><h5>@Html.ActionLink("Crear descuento", "Create", "Descuento")</h5>
+        Crea nuevos descuentos.
+    </li>
+    <li><h5>@Html.ActionLink("Edición de películas", "Editar","Admin")</h5>
+        Edita los datos de las películas que existen en entrecine.
+    </li>
+    <li><h5>@Html.ActionLink("Edición de sesiones", "EditarSesiones","Admin")</h5>
+        Edita todas las sesiones de peliculas.
+    </li>
+    <li><h5>@Html.ActionLink("Edición de descuentos", "EditarDescuentos","Admin")</h5>
+        Edita los descuentos aplicados a las sesiones.
+    </li>
+</ul>
 
