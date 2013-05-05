@@ -16,7 +16,6 @@ namespace EntrecineWebApp.Controllers
 
         //
         // GET: /Reserva/
-
         public ActionResult Crear(int id = 0)
         {
 

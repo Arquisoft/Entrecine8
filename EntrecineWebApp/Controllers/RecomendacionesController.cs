@@ -11,10 +11,8 @@ namespace EntrecineWebApp.Controllers
     {
         //
         // GET: /Recomendaciones/
-
         public ActionResult Index()
         {
-           
             return View(new RecomendacionesModel());
         }
 

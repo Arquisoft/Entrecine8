@@ -1,28 +1,39 @@
 ﻿@model IEnumerable<EntrecineWebApp.Models.Descuento>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Descuentos";
 }
 
-<h2>Lista de descuentos</h2>
+<h2>Descuentos</h2>
 
 <table>
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Porcentaje)
         </th>
+        <th>Opciones</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Porcentaje)
+            @Html.DisplayFor(modelItem => item.Porcentaje)%
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", "Descuento", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Borrar", "Borrar", "Descuento", new { id = item.Id }, new { })
         </td>
     </tr>
 }

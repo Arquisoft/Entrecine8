@@ -1,12 +1,12 @@
 ﻿@model EntrecineWebApp.Models.Descuento
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Borrar Descuento";
 }
 
-<h2>Delete</h2>
+<h2>Borrar Descuento</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Seguro que quieres borrar este descuento?</h3>
 <fieldset>
     <legend>Descuento</legend>
 
@@ -27,7 +27,6 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Borrar" /> |
-        @Html.ActionLink("Volver", "Index")
+        <input type="submit" value="Borrar" />
     </p>
 }

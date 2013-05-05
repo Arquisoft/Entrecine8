@@ -1,10 +1,10 @@
 ﻿@model EntrecineWebApp.Models.Descuento
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Descuento";
 }
 
-<h2>Edición de descuento</h2>
+<h2>Editar de descuento</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -36,10 +36,6 @@
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Volver", "Index","Admin")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

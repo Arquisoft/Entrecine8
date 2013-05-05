@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
 
 @{
-    ViewBag.Title = "Indice";
+    ViewBag.Title = "Administración de Entrecine";
 }
 
 <h2>Administración de Entrecine</h2>
@@ -10,19 +10,19 @@
     <li><h5>@Html.ActionLink("Crear película", "Crear", "Pelicula")</h5>
         Añade nuevas películas a entrecine.
     </li>
-    <li><h5>@Html.ActionLink("Crear sesión", "Create", "Sesion")</h5>
+    <li><h5>@Html.ActionLink("Crear sesión", "Crear", "Sesion")</h5>
         Define nuevas sesiones en entrecine.
     </li>
-    <li><h5>@Html.ActionLink("Crear descuento", "Create", "Descuento")</h5>
+    <li><h5>@Html.ActionLink("Crear descuento", "Crear", "Descuento")</h5>
         Crea nuevos descuentos.
     </li>
-    <li><h5>@Html.ActionLink("Edición de películas", "Editar","Admin")</h5>
+    <li><h5>@Html.ActionLink("Edición de películas", "Index", "Pelicula")</h5>
         Edita los datos de las películas que existen en entrecine.
     </li>
-    <li><h5>@Html.ActionLink("Edición de sesiones", "EditarSesiones","Admin")</h5>
+    <li><h5>@Html.ActionLink("Edición de sesiones", "Index","Sesion")</h5>
         Edita todas las sesiones de peliculas.
     </li>
-    <li><h5>@Html.ActionLink("Edición de descuentos", "EditarDescuentos","Admin")</h5>
+    <li><h5>@Html.ActionLink("Edición de descuentos", "Index","Descuento")</h5>
         Edita los descuentos aplicados a las sesiones.
     </li>
 </ul>

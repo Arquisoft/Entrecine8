@@ -1,0 +1,20 @@
+﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
+
+@{
+    ViewBag.Title = "Cartelera";
+}
+
+<h2>Cartelera</h2>
+
+<div id="cartelera">
+
+    @foreach (var item in Model)
+    {
+            <div class="movieCartelera">
+                <div class="titulo">@Html.DisplayFor(modelItem => item.Nombre)</div>
+                <a href="@Url.Content("~/Pelicula/Detalles/"+item.Id)"><img src="@Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>item.Id)+".jpg")" /></a>
+            </div>
+            
+    }
+
+</div>

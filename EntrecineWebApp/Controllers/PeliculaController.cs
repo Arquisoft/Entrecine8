@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EntrecineWebApp.Models;
+using EntrecineWebApp.Shared;
 
 namespace EntrecineWebApp.Controllers
 {
@@ -15,16 +16,14 @@ namespace EntrecineWebApp.Controllers
         private EntrecineModelContainer db = new EntrecineModelContainer();
 
         //
-        // GET: /Pelicula/
-
-        public ActionResult Index()
+        // GET: /Pelicula/Cartelera
+        public ActionResult Cartelera()
         {
             return View(db.PeliculaConjunto.ToList());
         }
 
         //
         // GET: /Pelicula/Detalles/5
-
         public ActionResult Detalles(int id = 0)
         {
             Pelicula pelicula = db.PeliculaConjunto.Find(id);
@@ -36,28 +35,22 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // GET: /Pelicula/Crear
+        // GET: /Pelicula/
+        public ActionResult Index()
+        {
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(db.PeliculaConjunto.ToList()), RedirectToAction("Index", "Home"));
+        }
 
+        //
+        // GET: /Pelicula/Crear
         public ActionResult Crear()
         {
-            return ComprobarUsuario(View(), RedirectToAction("Index", "Home"));
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(), RedirectToAction("Index", "Home"));
             
-            /* Seguridad
-            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
-            if (user != null && user.Rol >= 2)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            */
         }
 
         //
         // POST: /Pelicula/Crear
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Crear(Pelicula pelicula)
@@ -82,7 +75,6 @@ namespace EntrecineWebApp.Controllers
 
         //
         // GET: /Pelicula/Editar/5
-
         public ActionResult Editar(int id = 0)
         {
             Pelicula pelicula = db.PeliculaConjunto.Find(id);
@@ -90,20 +82,11 @@ namespace EntrecineWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return ComprobarUsuario(View(pelicula), RedirectToAction("Index","Home"));
-            /*
-            Pelicula pelicula = db.PeliculaConjunto.Find(id);
-            if (pelicula == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pelicula);
-             */
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(), RedirectToAction("Index", "Home"));
         }
 
         //
         // POST: /Pelicula/Editar/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Editar(Pelicula pelicula)
@@ -123,13 +106,5 @@ namespace EntrecineWebApp.Controllers
             base.Dispose(disposing);
         }
 
-        protected ActionResult ComprobarUsuario(ActionResult privilegiado, ActionResult erroneo)
-        {
-            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
-            if (user != null && user.Rol >= 2)
-                return privilegiado;
-            else
-                return erroneo;
-        }
     }
 }

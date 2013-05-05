@@ -1,20 +1,46 @@
 ﻿@model IEnumerable<EntrecineWebApp.Models.Pelicula>
 
 @{
-    ViewBag.Title = "Listado de Peliculas";
+    ViewBag.Title = "Editar películas";
 }
 
-<h2>Cartelera</h2>
+<h2>Editar Peliculas</h2>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duracion)
+        </th>
+        <th></th>
+    </tr>
 
-<div id="cartelera">
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duracion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", "Pelicula", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Detalles", "Detalles", "Pelicula", new { id = item.Id }, new { }) |
+        </td>
+    </tr>
+}
 
-    @foreach (var item in Model)
-    {
-            <div class="movieCartelera">
-                <div class="titulo">@Html.DisplayFor(modelItem => item.Nombre)</div>
-                <a href="@Url.Content("~/Pelicula/Detalles/"+item.Id)"><img src="@Url.Content("~/images/Caratulas/caratula_"+@Html.DisplayFor(modelItem=>item.Id)+".jpg")" /></a>
-            </div>
-            
-    }
-
-</div>
+</table>

@@ -1,30 +1,24 @@
-﻿@model IEnumerable<EntrecineWebApp.Models.Sesion>
+﻿@using EntrecineWebApp.Models
+@model IEnumerable<EntrecineWebApp.Models.Sesion>
 
 @{
-    ViewBag.Title = "Sesiones";
+    ViewBag.Title = "Editar Sesiones";
 }
 
-<h2>Índice de sesiones</h2>
-
+<h2>Edición de sesiones</h2>
 <table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.SalaId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Pelicula)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Fecha)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoraFin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pelicula.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descuento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrecioCalculado)
+            @Html.DisplayNameFor(model => model.DescuentoId)
         </th>
         <th></th>
     </tr>
@@ -35,21 +29,20 @@
             @Html.DisplayFor(modelItem => item.SalaId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraFin)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Pelicula.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descuento.Nombre)
+            @Html.DisplayFor(modelItem => item.Fecha)
         </td>
-         <td>
-            @Html.DisplayFor(modelItem => item.PrecioCalculado)
+        <td>
+            @Html.DisplayFor(modelItem => item.Descuento.Porcentaje)%
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", "Sesion", new { id = item.Id }, new { }) |
+            @Html.ActionLink("Borrar", "Borrar", "Sesion", new { id = item.Id }, new { })
         </td>
     </tr>
 }
 
 </table>
+

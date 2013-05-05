@@ -239,6 +239,7 @@
     <Compile Include="Models\UsuarioAnnotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\ExtensionMethods.cs" />
+    <Compile Include="Shared\Seguridad.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -368,7 +369,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Usuario\Registro.cshtml" />
-    <Content Include="Views\Pelicula\Index.cshtml" />
+    <Content Include="Views\Pelicula\Cartelera.cshtml" />
     <Content Include="Views\Pelicula\Detalles.cshtml" />
     <Content Include="Views\Pelicula\Crear.cshtml" />
     <Content Include="Views\Pelicula\Editar.cshtml" />
@@ -377,17 +378,15 @@
     <Content Include="Views\Recomendaciones\Index.cshtml" />
     <Content Include="Views\Reserva\Recibo.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Editar.cshtml" />
-    <Content Include="Views\Admin\EditarSesiones.cshtml" />
+    <Content Include="Views\Pelicula\Index.cshtml" />
     <Content Include="Views\Sesion\Index.cshtml" />
-    <Content Include="Views\Sesion\Create.cshtml" />
-    <Content Include="Views\Sesion\Edit.cshtml" />
-    <Content Include="Views\Sesion\Delete.cshtml" />
+    <Content Include="Views\Sesion\Crear.cshtml" />
+    <Content Include="Views\Sesion\Editar.cshtml" />
+    <Content Include="Views\Sesion\Borrar.cshtml" />
     <Content Include="Views\Descuento\Index.cshtml" />
-    <Content Include="Views\Descuento\Create.cshtml" />
-    <Content Include="Views\Descuento\Edit.cshtml" />
-    <Content Include="Views\Descuento\Delete.cshtml" />
-    <Content Include="Views\Admin\EditarDescuentos.cshtml" />
+    <Content Include="Views\Descuento\Crear.cshtml" />
+    <Content Include="Views\Descuento\Editar.cshtml" />
+    <Content Include="Views\Descuento\Borrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

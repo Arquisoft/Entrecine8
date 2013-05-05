@@ -1,10 +1,10 @@
 ﻿@model EntrecineWebApp.Models.Pelicula
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Película";
 }
 
-<h2>Edición para la pelicula: @Html.Encode(Model.Nombre)</h2>
+<h2>Editar película</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -52,10 +52,6 @@
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

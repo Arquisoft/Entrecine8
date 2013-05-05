@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EntrecineWebApp.Models;
+using EntrecineWebApp.Shared;
 
 namespace EntrecineWebApp.Controllers
 {
@@ -15,26 +16,23 @@ namespace EntrecineWebApp.Controllers
 
         //
         // GET: /Descuento/
-
         public ActionResult Index()
         {
-            return View(db.DescuentoConjunto.ToList());
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(db.DescuentoConjunto.ToList()), RedirectToAction("Index", "Home"));
         }
 
         //
-        // GET: /Descuento/Create
-
-        public ActionResult Create()
+        // GET: /Descuento/Crear
+        public ActionResult Crear()
         {
-            return ComprobarUsuario(View(), RedirectToAction("Index", "Home"));
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(), RedirectToAction("Index", "Home"));
         }
 
         //
-        // POST: /Descuento/Create
-
+        // POST: /Descuento/Crear
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Descuento descuento)
+        public ActionResult Crear(Descuento descuento)
         {
             if (ModelState.IsValid)
             {
@@ -48,23 +46,21 @@ namespace EntrecineWebApp.Controllers
 
         //
         // GET: /Descuento/Edit/5
-
-        public ActionResult Edit(int id = 0)
+        public ActionResult Editar(int id = 0)
         {
             Descuento descuento = db.DescuentoConjunto.Find(id);
             if (descuento == null)
             {
                 return HttpNotFound();
             }
-            return ComprobarUsuario(View(descuento), RedirectToAction("Index", "Home"));
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(descuento), RedirectToAction("Index", "Home"));
         }
 
         //
-        // POST: /Descuento/Edit/5
-
+        // POST: /Descuento/Editar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Descuento descuento)
+        public ActionResult Editar(Descuento descuento)
         {
             if (ModelState.IsValid)
             {
@@ -76,22 +72,20 @@ namespace EntrecineWebApp.Controllers
         }
 
         //
-        // GET: /Descuento/Delete/5
-
-        public ActionResult Delete(int id = 0)
+        // GET: /Descuento/Borrar/5
+        public ActionResult Borrar(int id = 0)
         {
             Descuento descuento = db.DescuentoConjunto.Find(id);
             if (descuento == null)
             {
                 return HttpNotFound();
             }
-            return ComprobarUsuario(View(descuento), RedirectToAction("Index", "Home"));
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(descuento), RedirectToAction("Index", "Home"));
         }
 
         //
-        // POST: /Descuento/Delete/5
-
-        [HttpPost, ActionName("Delete")]
+        // POST: /Descuento/Borrar/5
+        [HttpPost, ActionName("Borrar")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -105,15 +99,6 @@ namespace EntrecineWebApp.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
-        }
-
-        protected ActionResult ComprobarUsuario(ActionResult privilegiado, ActionResult erroneo)
-        {
-            Usuario user = db.UsuarioConjunto.FirstOrDefault(x => x.Login.Equals(User.Identity.Name));
-            if (user != null && user.Rol >= 2)
-                return privilegiado;
-            else
-                return erroneo;
         }
     }
 }
