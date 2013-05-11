@@ -82,7 +82,7 @@ namespace EntrecineWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(), RedirectToAction("Index", "Home"));
+            return Seguridad.ComprobarAdministrador(db, User.Identity.Name, View(pelicula), RedirectToAction("Index", "Home"));
         }
 
         //
